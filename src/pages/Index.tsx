@@ -96,54 +96,54 @@ const Index = () => {
         <table>
           <thead>
             <tr>
-              <th className=" text-center ">#</th>
-              <th className=" text-center ">Seriya</th>
-              <th className=" text-center ">Suv satxi(sm)</th>
-              <th className=" text-center ">Tuzlik darajasi(EC25)</th>
-              <th className=" text-center ">Bosim (kPa)</th>
-              <th className=" text-center ">Vaqt</th>
-              <th className=" text-center ">Sana</th>
-              <th className=" text-center ">Signal darajasi</th>
+              <th className="text-center">#</th>
+              <th className="text-center">Seriya</th>
+              <th className="text-center">Suv satxi(sm)</th>
+              <th className="text-center">Tuzlik darajasi(EC25)</th>
+              <th className="text-center">Bosim (kPa)</th>
+              <th className="text-center">Vaqt</th>
+              <th className="text-center">Sana</th>
+              <th className="text-center">Signal darajasi</th>
             </tr>
           </thead>
           <tbody>
             {filt.map((data) => {
               return (
                 <tr key={data.id}>
-                  <td>{data.id}</td>
-                  <td>
-                    <div className="whitespace-nowrap text-center">
+                  <td className=" ">{data.id}</td>
+                  <td className=" ">
+                    <div className="whitespace-nowrap  ">
                       {data.seriya}
                     </div>
                   </td>
-                  <td>
-                    <div className="whitespace-nowrap text-center">
+                  <td className=" ">
+                    <div className="whitespace-nowrap  ">
                       {data.satx}
                     </div>
                   </td>
-                  <td>
-                    <div className="whitespace-nowrap text-center">
+                  <td className=" ">
+                    <div className="whitespace-nowrap  ">
                       {data.tuzlik}
                     </div>
                   </td>
-                  <td>
-                    <div className="whitespace-nowrap text-center">
+                  <td className=" ">
+                    <div className="whitespace-nowrap  ">
                       {data.bosim}
                     </div>
                   </td>
 
-                  <td>
-                    <div className="whitespace-nowrap text-center">
+                  <td className=" ">
+                    <div className="whitespace-nowrap  ">
                       {getHourAndMinutesFromTimestamp(data.date)}
                     </div>
                   </td>
-                  <td>
-                    <div className="whitespace-nowrap text-center">
+                  <td className=" ">
+                    <div className="whitespace-nowrap  ">
                       {getDateFromTimestamp(data.date)}
                     </div>
                   </td>
-                  <td>
-                    <div className="whitespace-nowrap text-center  flex items-center gap-2">
+                  <td className=" ">
+                    <div className="whitespace-nowrap    flex items-center gap-2">
                       {" "}
                       {data.signal ? <GreenDot /> : <RedDot />}{" "}
                       {data.signal ? "Yaxshi" : "Signal yo'q"}{" "}

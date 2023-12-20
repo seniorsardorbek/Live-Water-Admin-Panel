@@ -10,7 +10,6 @@ import { Logo } from "../../../public/assets/svgs";
 
 const Sidebar = () => {
   const [currentMenu, setCurrentMenu] = useState<string>("");
-  const [errorSubMenu, setErrorSubMenu] = useState(false);
   const themeConfig = useSelector((state: IRootState) => state.themeConfig);
   const semidark = useSelector(
     (state: IRootState) => state.themeConfig.semidark
@@ -20,30 +19,12 @@ const Sidebar = () => {
   const { t } = useTranslation();
   const toggleMenu = (value: string) => {
     setCurrentMenu((oldValue) => {
-      return oldValue === value ? "" : value;
+      if (value === "dashboard") {
+        return "/";
+      }
+      return value;
     });
   };
-
-  useEffect(() => {
-    const selector = document.querySelector(
-      '.sidebar ul a[href="' + window.location.pathname + '"]'
-    );
-    if (selector) {
-      selector.classList.add("active");
-      const ul: any = selector.closest("ul.sub-menu");
-      if (ul) {
-        let ele: any =
-          ul.closest("li.menu").querySelectorAll(".nav-link") || [];
-        if (ele.length) {
-          ele = ele[0];
-          setTimeout(() => {
-            ele.click();
-          });
-        }
-      }
-    }
-  }, []);
-
   useEffect(() => {
     if (window.innerWidth < 1024 && themeConfig.sidebar) {
       dispatch(toggleSidebar());
@@ -167,6 +148,8 @@ const Sidebar = () => {
                         </span>
                       </div>
                     </NavLink>
+                  </li>
+                  <li className="nav-item">
                     <NavLink to="/constructor" className="group">
                       <div className="flex items-center">
                         <svg

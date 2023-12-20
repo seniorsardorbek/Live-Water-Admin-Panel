@@ -1,13 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import Cookies from "js-cookie";
-import { EventFace } from "../types";
+import { DevicesFace, EventFace } from "../types";
 import { events } from "../json/data";
 
-const devices = [
+const devices  : DevicesFace [] = [
   {
     id: 1,
     seriya: "892356714",
+    location: "Xo`jaobod tumani TIB",
+    ip: "192.168.1.102",
+    date: 1680850800000,
+    signal: true,
+    port: 4521,
+    lat: 40.666667,
+    lng: 72.583333,
+  },
+  {
+    id: 1,
+    seriya: "8923567141",
     location: "Xo`jaobod tumani TIB",
     ip: "192.168.1.102",
     date: 1680850800000,

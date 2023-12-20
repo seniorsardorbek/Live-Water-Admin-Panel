@@ -12,11 +12,11 @@ const options3 = [
   { value: "Yaxshi", label: "Yaxshi" },
 ];
 const AddDevice = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { t } = useTranslation();
-  const [data, setData] = useState({signal :true });
+  const [data, setData] = useState({ signal: true });
   const [date2, setDate2] = useState<any>("2022-07-05 12:00");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const showMessage = (message: String = "") => {
     const toast = Swal.mixin({
       toast: true,
@@ -37,12 +37,28 @@ const AddDevice = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleSubmit =(e :React.FormEvent<HTMLFormElement> ) =>{
-    e.preventDefault()
-    dispatch(addDevice({...data , date : compileTime(date2)}))
-    navigate('/devices')
-   
-  }
+  const handleSelectChange = (e: any) => {
+    const { value } = e.target;
+    if (value === "true") {
+      setData((pre) => ({
+        ...data,
+        [e.target.name]: true,
+      }));
+    } else if (value === "false") {
+      setData((pre) => ({
+        ...data,
+        [e.target.name]: false,
+      }));
+    }
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(addDevice({ ...data, date: compileTime(date2) }));
+    navigate("/devices");
+    console.log({ ...data, date: compileTime(date2) });
+  };
+  console.log(data);
+
   return (
     <div>
       <ul className="flex space-x-2 rtl:space-x-reverse">
@@ -52,7 +68,10 @@ const AddDevice = () => {
           </Link>
         </li>
         <li>
-          <Link to="/devices" className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-primary hover:underline">
+          <Link
+            to="/devices"
+            className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-primary hover:underline"
+          >
             Devices
           </Link>
         </li>
@@ -61,21 +80,23 @@ const AddDevice = () => {
         </li>
       </ul>
       <div className="flex justify-between  flex-wrap w-full  mt-5">
-        <form onSubmit={(e) => handleSubmit(e)} className=" flex justify-between gap-32 px-10  w-full ">
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          className=" flex justify-between gap-32 px-10  w-full "
+        >
           <div className="mb-6  w-1/2">
             <div className="flex items-center">
               <label htmlFor="number" className="flex-1 ltr:mr-2 rtl:ml-2 mb-0">
                 Qurilma seriyasi
               </label>
               <input
-              required
+                required
                 onChange={(e) => handleChange(e)}
                 id="number"
                 type="text"
                 name="seriya"
                 className="form-input lg:w-[270px] w-2/3"
                 placeholder="#8801"
-                // defaultValue={device?.seriya}
               />
             </div>
             <div className="flex items-center mt-4">
@@ -87,20 +108,28 @@ const AddDevice = () => {
               </label>
               <div className=" font-semibold text-lg bg-black dark:bg-black-dark-light">
                 <select
-                required
+                  required
                   className="form-input lg:w-[270px] w-2/4"
                   onChange={(e) => handleChange(e)}
                   name="location"
                   id="location"
                 >
-                  <option value="Xo`jaobod tumani TIB ">Xo`jaobod tumani TIB</option>
+                  <option value="Xo`jaobod tumani TIB ">
+                    Xo`jaobod tumani TIB
+                  </option>
                   <option value="Tolariq tuman QMB">Tolariq tuman QMB</option>
-                  <option value="Xo`jaobod tumani TIB ">Xo`jaobod tumani TIB</option>
+                  <option value="Xo`jaobod tumani TIB ">
+                    Xo`jaobod tumani TIB
+                  </option>
                   <option value="Tolariq tuman QMB">Tolariq tuman QMB</option>
                   <option value="Tolariq tuman QMB">Tolariq tuman QMB</option>
-                  <option value="Xo`jaobod tumani TIB ">Xo`jaobod tumani TIB</option>
+                  <option value="Xo`jaobod tumani TIB ">
+                    Xo`jaobod tumani TIB
+                  </option>
                   <option value="Tolariq tuman QMB">Tolariq tuman QMB</option>
-                  <option value="Xo`jaobod tumani TIB ">Xo`jaobod tumani TIB</option>
+                  <option value="Xo`jaobod tumani TIB ">
+                    Xo`jaobod tumani TIB
+                  </option>
                   <option value="Tolariq tuman QMB">Tolariq tuman QMB</option>
                 </select>
               </div>
@@ -113,15 +142,17 @@ const AddDevice = () => {
                 Ip Adress
               </label>
               <input
-              required
+                required
                 onChange={(e) => handleChange(e)}
                 id="startDate"
                 name="ip"
+                type="string"
                 placeholder="127.00.98.01"
                 className="form-input lg:w-[147px] w-2/3"
               />
               <input
                 id="dueDate"
+                type="number"
                 name="port"
                 required
                 placeholder="4000"
@@ -156,9 +187,9 @@ const AddDevice = () => {
               <div>Oxirgi yangilangan</div>
               <div className="mb-5">
                 <Flatpickr
-                required
+                  required
                   name="date"
-                  onChange={(date2) => setDate2(convertDateFormat(date2[0] ))}
+                  onChange={(date2) => setDate2(convertDateFormat(date2[0]))}
                   data-enable-time
                   options={{
                     enableTime: true,
@@ -168,16 +199,15 @@ const AddDevice = () => {
                   className="form-input lg:w-[200px] w-2/4"
                 />
               </div>
-              {/* <div>{device?.date}</div> */}
             </div>
             <div className="flex items-center justify-between ">
               <div>Status</div>
               <div className=" font-semibold text-lg bg-black dark:bg-black-dark-light">
                 <select
-                required
+                  required
                   className="form-input lg:w-[200px] w-2/4"
-                  onChange={(e) => handleChange(e)}
-                  name="status"
+                  onChange={(e) => handleSelectChange(e)}
+                  name="signal"
                   id="status"
                 >
                   <option value={"true"}>Yaxshi</option>
@@ -187,31 +217,30 @@ const AddDevice = () => {
             </div>
             <div className="flex items-center justify-between mt-4 ">
               <div>Lat Long</div>
-              <div className="flex gap-2" >
-
-              <input
-              required
-                onChange={(e) => handleChange(e)}
-                id="number"
-                step='any'
-                type="number"
-                name="lat"
-                className="form-input focus:outline-none no-spinners lg:w-[97px] w-2/3"
-                placeholder="Lat"
-                // defaultValue={device?.seriya}
+              <div className="flex gap-2">
+                <input
+                  required
+                  onChange={(e) => handleChange(e)}
+                  id="number"
+                  step="any"
+                  type="number"
+                  name="lat"
+                  className="form-input focus:outline-none no-spinners lg:w-[97px] w-2/3"
+                  placeholder="Lat"
+                  // defaultValue={device?.seriya}
                 />
-              <input
-              required
-                onChange={(e) => handleChange(e)}
-                id="number"
-                step='any'
-                type="number"
-                name="lng"
-                className="form-input focus:outline-none no-spinners lg:w-[97px] w-2/3"
-                placeholder="Long"
-                // defaultValue={device?.seriya}
+                <input
+                  required
+                  onChange={(e) => handleChange(e)}
+                  id="number"
+                  step="any"
+                  type="number"
+                  name="lng"
+                  className="form-input focus:outline-none no-spinners lg:w-[97px] w-2/3"
+                  placeholder="Long"
+                  // defaultValue={device?.seriya}
                 />
-                </div>
+              </div>
             </div>
             <button
               type="submit"

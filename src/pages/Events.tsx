@@ -29,20 +29,29 @@ function Events() {
   useEffect(() => {
     dispatch(setPageTitle("Events"));
 
-    const ksk : EventFace[] = devices.map((dev) => {
-      return events
-        .filter((item) => item.seriya === dev.seriya)
-        .reduce(
+    const ksk: EventFace[] = devices
+      .map((dev) => {
+        const filteredEvents = events.filter(
+          (item) => item.seriya === dev.seriya
+        );
+
+        if (filteredEvents.length === 0) {
+          return null; // or any other default value
+        }
+
+        const maxDateEvent = filteredEvents.reduce(
           (maxDateItem, currentItem) => {
             return currentItem.date > maxDateItem.date
               ? currentItem
               : maxDateItem;
-          },
-          // { date: 0 }
+          }
         );
-      });
-      setFilt(ksk)
-  } , []);
+
+        return maxDateEvent;
+      })
+      .filter((event) => event !== null) as EventFace[];
+    setFilt(ksk);
+  }, []);
 
   const handleChange = (e: any) => {
     const { value } = e.target;
@@ -60,7 +69,7 @@ function Events() {
   const filter = (e: React.FormEvent) => {
     e.preventDefault();
     const { to, from } = compileTimes(date3);
-    
+
     let filtered = events.filter((el) => {
       const isDateInRange = from <= el.date && el.date <= to;
       const isSeriyaInSorted = data.includes(el.seriya);
@@ -91,7 +100,7 @@ function Events() {
             <Flatpickr
               options={{
                 mode: "range",
-                time_24hr : true ,
+                time_24hr: true,
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
               }}
@@ -110,9 +119,12 @@ function Events() {
                 <span className="text-xs">{el.label}</span>
               </label>
             ))}
-            <select  className="form-input   bg-black dark:bg-black-dark-light lg:w-[280px] ">
-              {devices.map((el) => (
-                <option  value={el.seriya}> {el.location}</option>
+            <select className="form-input lg:w-[280px] ">
+              {devices.map((el, i) => (
+                <option key={i} value={el.seriya}>
+                  {" "}
+                  {el.location}
+                </option>
               ))}
             </select>
             <div className="mb-5 w-[80%]" id="limit_tagging">
@@ -169,24 +181,16 @@ function Events() {
                     <tr key={data.id}>
                       <td className="">{data.id}</td>
                       <td className="">
-                        <div className="whitespace-nowrap ">
-                          {data.seriya}
-                        </div>
+                        <div className="whitespace-nowrap ">{data.seriya}</div>
                       </td>
                       <td className="">
-                        <div className="whitespace-nowrap ">
-                          {data.satx}
-                        </div>
+                        <div className="whitespace-nowrap ">{data.satx}</div>
                       </td>
                       <td className="">
-                        <div className="whitespace-nowrap ">
-                          {data.tuzlik}
-                        </div>
+                        <div className="whitespace-nowrap ">{data.tuzlik}</div>
                       </td>
                       <td className="">
-                        <div className="whitespace-nowrap ">
-                          {data.bosim}
-                        </div>
+                        <div className="whitespace-nowrap ">{data.bosim}</div>
                       </td>
 
                       <td className="">
@@ -207,7 +211,7 @@ function Events() {
                           ) : (
                             <RedDot />
                           )}{" "}
-                          {data.signal ?   "Yaxshi":"Signal yo'q"}{" "}
+                          {data.signal ? "Yaxshi" : "Signal yo'q"}{" "}
                         </div>
                       </td>
                       {/* <td >

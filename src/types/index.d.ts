@@ -1,13 +1,12 @@
 export interface DevicesFace {
-    id: string,
+    id: number,
     location: string
     lat: number,
     lng: number
     seriya: string,
-    name: string,
     ip: string,
     date: number,
-    status: 'Yaxshi',
+    signal: boolean,
     port: number
 }
 export interface EventFace {

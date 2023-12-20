@@ -3,7 +3,7 @@
     "sales": "Sales",
     "analytics": "Analytics",
     "events": "Events",
-     "constructor" : "Constructor" ,
+    "constructor" : "Constructor" ,
     "devices": "Devices",
     "map": "Devices on map",
     "apps": "Apps",

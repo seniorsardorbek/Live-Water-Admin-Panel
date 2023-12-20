@@ -140,29 +140,28 @@ const Sidebar = () => {
                     <NavLink to="/events" className="group">
                       <div className="flex items-center">
                         <svg
-                          className="group-hover:!text-primary"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
+                          width="29"
+                          height="29"
+                          viewBox="0 0 29 29"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            opacity="0.5"
-                            d="M21 15.9983V9.99826C21 7.16983 21 5.75562 20.1213 4.87694C19.3529 4.10856 18.175 4.01211 16 4H8C5.82497 4.01211 4.64706 4.10856 3.87868 4.87694C3 5.75562 3 7.16983 3 9.99826V15.9983C3 18.8267 3 20.2409 3.87868 21.1196C4.75736 21.9983 6.17157 21.9983 9 21.9983H15C17.8284 21.9983 19.2426 21.9983 20.1213 21.1196C21 20.2409 21 18.8267 21 15.9983Z"
-                            fill="currentColor"
+                            d="M16.5 3.5L16.5 12.5L25.5 12.5C25.5 7.529 21.471 3.5 16.5 3.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
                           />
                           <path
-                            d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z"
-                            fill="currentColor"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M12 9.25C12.4142 9.25 12.75 9.58579 12.75 10V12.25L15 12.25C15.4142 12.25 15.75 12.5858 15.75 13C15.75 13.4142 15.4142 13.75 15 13.75L12.75 13.75L12.75 16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16L11.25 13.75H9C8.58579 13.75 8.25 13.4142 8.25 13C8.25 12.5858 8.58579 12.25 9 12.25L11.25 12.25L11.25 10C11.25 9.58579 11.5858 9.25 12 9.25Z"
-                            fill="currentColor"
+                            d="M12.5 7.5C7.529 7.5 3.5 11.529 3.5 16.5C3.5 21.471 7.529 25.5 12.5 25.5C17.471 25.5 21.5 21.471 21.5 16.5L12.5 16.5L12.5 7.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
                           />
                         </svg>
+
                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
                           {t("events")}
                         </span>
@@ -171,29 +170,22 @@ const Sidebar = () => {
                     <NavLink to="/constructor" className="group">
                       <div className="flex items-center">
                         <svg
-                          className="group-hover:!text-primary"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
+                          width="23"
+                          height="25"
+                          viewBox="0 0 23 25"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
+                          className="group-hover:!text-primary"
                         >
                           <path
-                            opacity="0.5"
-                            d="M21 15.9983V9.99826C21 7.16983 21 5.75562 20.1213 4.87694C19.3529 4.10856 18.175 4.01211 16 4H8C5.82497 4.01211 4.64706 4.10856 3.87868 4.87694C3 5.75562 3 7.16983 3 9.99826V15.9983C3 18.8267 3 20.2409 3.87868 21.1196C4.75736 21.9983 6.17157 21.9983 9 21.9983H15C17.8284 21.9983 19.2426 21.9983 20.1213 21.1196C21 20.2409 21 18.8267 21 15.9983Z"
-                            fill="currentColor"
-                          />
-                          <path
-                            d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z"
-                            fill="currentColor"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M12 9.25C12.4142 9.25 12.75 9.58579 12.75 10V12.25L15 12.25C15.4142 12.25 15.75 12.5858 15.75 13C15.75 13.4142 15.4142 13.75 15 13.75L12.75 13.75L12.75 16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16L11.25 13.75H9C8.58579 13.75 8.25 13.4142 8.25 13C8.25 12.5858 8.58579 12.25 9 12.25L11.25 12.25L11.25 10C11.25 9.58579 11.5858 9.25 12 9.25Z"
-                            fill="currentColor"
+                            d="M21.5 4.5L13.5 12.5L13.5 20.5L9.5 22.5L9.5 12.5L1.5 4.5L1.5 1.5L21.5 1.5V4.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
                           />
                         </svg>
+
                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
                           {t("constructor")}
                         </span>
@@ -233,28 +225,70 @@ const Sidebar = () => {
                     <NavLink to="/devices" className="group">
                       <div className="flex items-center">
                         <svg
-                          className="group-hover:!text-primary"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
+                          width="29"
+                          height="29"
+                          viewBox="0 0 29 29"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M8.42229 20.6181C10.1779 21.5395 11.0557 22.0001 12 22.0001V12.0001L2.63802 7.07275C2.62423 7.09491 2.6107 7.11727 2.5974 7.13986C2 8.15436 2 9.41678 2 11.9416V12.0586C2 14.5834 2 15.8459 2.5974 16.8604C3.19479 17.8749 4.27063 18.4395 6.42229 19.5686L8.42229 20.6181Z"
-                            fill="currentColor"
+                            d="M7.79 12.4998C7.4796 11.4553 7.41735 10.3527 7.60821 9.2798C7.79907 8.20694 8.23778 7.19345 8.8894 6.32004C9.54101 5.44662 10.3875 4.7374 11.3616 4.24883C12.3356 3.76027 13.4103 3.50586 14.5 3.50586C15.5897 3.50586 16.6644 3.76027 17.6384 4.24883C18.6125 4.7374 19.459 5.44662 20.1106 6.32004C20.7622 7.19345 21.2009 8.20694 21.3918 9.2798C21.5827 10.3527 21.5204 11.4553 21.21 12.4998"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
                           />
                           <path
-                            opacity="0.7"
-                            d="M17.5774 4.43152L15.5774 3.38197C13.8218 2.46066 12.944 2 11.9997 2C11.0554 2 10.1776 2.46066 8.42197 3.38197L6.42197 4.43152C4.31821 5.53552 3.24291 6.09982 2.6377 7.07264L11.9997 12L21.3617 7.07264C20.7564 6.09982 19.6811 5.53552 17.5774 4.43152Z"
-                            fill="currentColor"
+                            d="M14.5 13.5C16.1569 13.5 17.5 12.1569 17.5 10.5C17.5 8.84315 16.1569 7.5 14.5 7.5C12.8431 7.5 11.5 8.84315 11.5 10.5C11.5 12.1569 12.8431 13.5 14.5 13.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
                           />
                           <path
-                            opacity="0.5"
-                            d="M21.4026 7.13986C21.3893 7.11727 21.3758 7.09491 21.362 7.07275L12 12.0001V22.0001C12.9443 22.0001 13.8221 21.5395 15.5777 20.6181L17.5777 19.5686C19.7294 18.4395 20.8052 17.8749 21.4026 16.8604C22 15.8459 22 14.5834 22 12.0586V11.9416C22 9.41678 22 8.15436 21.4026 7.13986Z"
-                            fill="currentColor"
+                            d="M14.5 25.5C15.6046 25.5 16.5 24.6046 16.5 23.5C16.5 22.3954 15.6046 21.5 14.5 21.5C13.3954 21.5 12.5 22.3954 12.5 23.5C12.5 24.6046 13.3954 25.5 14.5 25.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
+                          />
+                          <path
+                            d="M6.5 25.5C7.60457 25.5 8.5 24.6046 8.5 23.5C8.5 22.3954 7.60457 21.5 6.5 21.5C5.39543 21.5 4.5 22.3954 4.5 23.5C4.5 24.6046 5.39543 25.5 6.5 25.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
+                          />
+                          <path
+                            d="M22.5 25.5C23.6046 25.5 24.5 24.6046 24.5 23.5C24.5 22.3954 23.6046 21.5 22.5 21.5C21.3954 21.5 20.5 22.3954 20.5 23.5C20.5 24.6046 21.3954 25.5 22.5 25.5Z"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
+                          />
+                          <path
+                            d="M14.5 21.5L14.5 17.5"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
+                          />
+                          <path
+                            d="M6.5 21.5V18.5L9.5 16.5"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
+                          />
+                          <path
+                            d="M22.5 21.5V18.5L19.5 16.5"
+                            stroke="#565E6C"
+                            stroke-width="2.4"
+                            stroke-miterlimit="10"
+                            stroke-linecap="square"
                           />
                         </svg>
+
                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
                           {t("devices")}
                         </span>

@@ -17,6 +17,15 @@ export function RedDot() {
     
   )
 }
+export function BlueDot() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.5" y="0.5" width="16" height="16" rx="8" fill="#4F57E9"/>
+    </svg>
+    
+    
+  )
+}
 export function Logo (){
   return (
     <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">

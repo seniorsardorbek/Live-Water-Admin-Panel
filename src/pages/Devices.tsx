@@ -21,25 +21,26 @@ function Devices() {
 
   const deleteRow = (id: any = null) => {
     if (window.confirm("Are you sure want to delete selected row ?")) {
-      if (id) {
-        setRecords(devices.filter((user) => user.id != id));
-        setInitialRecords(devices.filter((user) => user.id != id));
-        dispatch(addDevice(devices.filter((user) => user.id != id)));
-        setSearch("");
-        setSelectedRecords([]);
-      } else {
-        let selectedRows = selectedRecords || [];
-        const ids = selectedRows.map((d: any) => {
-          return d.id;
-        });
-        const result = devices.filter((d) => !ids.includes(d.id as never));
-        setRecords(result);
-        setInitialRecords(result);
-        dispatch(addDevice(result));
-        setSearch("");
-        setSelectedRecords([]);
-        setPage(1);
-      }
+      window.alert('You cannot delete ?')
+      // if (id) {
+      //   setRecords(devices.filter((user) => user.id != id));
+      //   setInitialRecords(devices.filter((user) => user.id != id));
+      //   dispatch(addDevice(devices.filter((user) => user.id != id)));
+      //   setSearch("");
+      //   setSelectedRecords([]);
+      // } else {
+      //   let selectedRows = selectedRecords || [];
+      //   const ids = selectedRows.map((d: any) => {
+      //     return d.id;
+      //   });
+      //   const result = devices.filter((d) => !ids.includes(d.id as never));
+      //   setRecords(result);
+      //   setInitialRecords(result);
+      //   dispatch(addDevice(result));
+      //   setSearch("");
+      //   setSelectedRecords([]);
+      //   setPage(1);
+      // }
     }
   };
 

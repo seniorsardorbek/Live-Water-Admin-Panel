@@ -26,7 +26,13 @@ function DevicesMap() {
         </li>
       </ul>
       <div className="mt-5">
-        <YMaps>
+        <YMaps 
+          query={{
+            suggest_apikey: "d6731aa6-00f1-4319-9583-87938fbc50f9",
+            apikey: "d6731aa6-00f1-4319-9583-87938fbc50f9",
+          }}
+        
+        >
           <Map
             width={"100%"}
             height={"60vh"}
@@ -38,9 +44,10 @@ function DevicesMap() {
             <ZoomControl />
             <FullscreenControl />
             <GeolocationControl options={{ float: "left" }} />
-            {devices.map((device) => {
+            {devices.map((device ,i) => {
               return (
                 <Placemark
+                key={i}
                   geometry={[device!.lat, device!.lng]}
                   properties={{ iconCaption: device.location }}
                   

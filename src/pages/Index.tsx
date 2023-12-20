@@ -14,34 +14,29 @@ import {
 import { EventFace } from "../types";
 
 const Index = () => {
-  
-  const {  devices , events } = useSelector(
-    (state: IRootState) => state.data
-  );
+  const { devices, events } = useSelector((state: IRootState) => state.data);
   const [filt, setFilt] = useState<EventFace[]>([]);
-const {all , goods , bads} = (() =>{
-  return  {
-    all : devices.length ,
-    goods : devices.filter(el => el.signal === true),
-    bads : devices.filter(el => el.signal === false),
-  }
-})()
+  const { all, goods, bads } = (() => {
+    return {
+      all: devices.length,
+      goods: devices.filter((el) => el.signal === true),
+      bads: devices.filter((el) => el.signal === false),
+    };
+  })();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageTitle("Dashboard"));
-    const ksk : EventFace[] = devices.map((dev) => {
+    const ksk: EventFace[] = devices.map((dev) => {
       return events
         .filter((item) => item.seriya === dev.seriya)
-        .reduce(
-          (maxDateItem, currentItem) => {
-            return currentItem.date > maxDateItem.date
-              ? currentItem
-              : maxDateItem;
-          },
-        );
-      });
-      setFilt(ksk)
-  } ,[]);
+        .reduce((maxDateItem, currentItem) => {
+          return currentItem.date > maxDateItem.date
+            ? currentItem
+            : maxDateItem;
+        });
+    });
+    setFilt(ksk);
+  }, []);
   const isDark =
     useSelector((state: IRootState) => state.themeConfig.theme) === "dark"
       ? true
@@ -476,79 +471,80 @@ const {all , goods , bads} = (() =>{
       </ul> */}
 
       <div className="flex flex-wrap w-full justify-evenly mb-5">
-        <div className="border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] p-6 relative">
-          <h5 className="text-dark text-lg font-semibold  flex items-center gap-4 dark:text-white-light">
+        <div className="border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] md:p-6 p-1 relative">
+          <h5 className="text-dark md:text-lg text-sm font-semibold  flex items-center gap-4 dark:text-white-light">
             Barchasi: {all}
           </h5>
         </div>
-        <div className="border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] p-6 relative">
-          <h5 className="text-dark text-lg font-semibold  flex items-center gap-4 dark:text-white-light">
+        <div className="border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] md:p-6 p-1 relative">
+          <h5 className="text-dark md:text-lg text-sm font-semibold  flex items-center gap-4 dark:text-white-light">
             <GreenDot /> Yaxshi: {goods.length}
           </h5>
         </div>
-        <div className="border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] p-6 relative">
-          <h5 className="text-dark text-lg font-semibold  flex items-center gap-4 dark:text-white-light">
+        <div className="border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] md:p-6 p-1 relative">
+          <h5 className="text-dark md:text-lg text-sm font-semibold  flex items-center gap-4 dark:text-white-light">
             <RedDot /> Signal yoq: {bads.length}
           </h5>
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th className=" text-center ">#</th>
-            <th className=" text-center ">Seriya</th>
-            <th className=" text-center ">Suv satxi(sm)</th>
-            <th className=" text-center ">Tuzlik darajasi(EC25)</th>
-            <th className=" text-center ">Bosim (kPa)</th>
-            <th className=" text-center ">Vaqt</th>
-            <th className=" text-center ">Sana</th>
-            <th className=" text-center ">Signal darajasi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filt.map((data) => {
-            return (
-              <tr key={data.id}>
-                <td>{data.id}</td>
-                <td>
-                  <div className="whitespace-nowrap text-center">
-                    {data.seriya}
-                  </div>
-                </td>
-                <td>
-                  <div className="whitespace-nowrap text-center">
-                    {data.satx}
-                  </div>
-                </td>
-                <td>
-                  <div className="whitespace-nowrap text-center">
-                    {data.tuzlik}
-                  </div>
-                </td>
-                <td>
-                  <div className="whitespace-nowrap text-center">
-                    {data.bosim}
-                  </div>
-                </td>
+      <div className="overflow-x-scroll  md:overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th className=" text-center ">#</th>
+              <th className=" text-center ">Seriya</th>
+              <th className=" text-center ">Suv satxi(sm)</th>
+              <th className=" text-center ">Tuzlik darajasi(EC25)</th>
+              <th className=" text-center ">Bosim (kPa)</th>
+              <th className=" text-center ">Vaqt</th>
+              <th className=" text-center ">Sana</th>
+              <th className=" text-center ">Signal darajasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filt.map((data) => {
+              return (
+                <tr key={data.id}>
+                  <td>{data.id}</td>
+                  <td>
+                    <div className="whitespace-nowrap text-center">
+                      {data.seriya}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="whitespace-nowrap text-center">
+                      {data.satx}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="whitespace-nowrap text-center">
+                      {data.tuzlik}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="whitespace-nowrap text-center">
+                      {data.bosim}
+                    </div>
+                  </td>
 
-                <td>
-                  <div className="whitespace-nowrap text-center">
-                    {getHourAndMinutesFromTimestamp(data.date)}
-                  </div>
-                </td>
-                <td>
-                  <div className="whitespace-nowrap text-center">
-                    {getDateFromTimestamp(data.date)}
-                  </div>
-                </td>
-                <td>
-                  <div className="whitespace-nowrap text-center  flex items-center gap-2">
-                    {" "}
-                    {data.signal  ? <GreenDot /> : <RedDot />}{" "}
-                    {data.signal ?  "Yaxshi" : "Signal yo'q"}{" "}
-                  </div>
-                </td>
-                {/* <td >
+                  <td>
+                    <div className="whitespace-nowrap text-center">
+                      {getHourAndMinutesFromTimestamp(data.date)}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="whitespace-nowrap text-center">
+                      {getDateFromTimestamp(data.date)}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="whitespace-nowrap text-center  flex items-center gap-2">
+                      {" "}
+                      {data.signal ? <GreenDot /> : <RedDot />}{" "}
+                      {data.signal ? "Yaxshi" : "Signal yo'q"}{" "}
+                    </div>
+                  </td>
+                  {/* <td >
                             <div
                                 className={`whitespace-nowrap ${
                                     data.status === 'completed'
@@ -560,17 +556,17 @@ const {all , goods , bads} = (() =>{
                                         : data.status === 'Canceled'
                                         ? 'text-danger'
                                         : 'text-success'
-                                }`}
-                            >
+                                      }`}
+                                      >
                                 {data.progress}
                             </div>
                               </td> */}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

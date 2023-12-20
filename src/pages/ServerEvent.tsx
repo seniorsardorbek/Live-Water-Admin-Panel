@@ -5,7 +5,7 @@ import { IRootState } from "../store";
 import { setPageTitle } from "../store/themeConfigSlice";
 
 import { Link } from "react-router-dom";
-import { getPrettyTime } from '../utils/utils';
+import { getPrettyTime } from "../utils/utils";
 function ServerEvents() {
   const dispatch = useDispatch();
 
@@ -44,15 +44,21 @@ function ServerEvents() {
                     <h5 className="text-[#3b3f5c] text-[15px] font-semibold mb-2 dark:text-white-light">
                       {" "}
                       Status code -{" "}
-                      <span className="badge bg-primary rounded-full">
-                        {el.status}
+                      <span
+                        className={`badge ${
+                          el.status === 200 ? "bg-primary" : "bg-red-500"
+                        } rounded-full`}
+                      >
+                        {el?.status}
                       </span>
                     </h5>
                   </div>
                   <p className="mb-2 text-white-dark">Volume - {el.volume}</p>
                   <p className="mb-2 text-white-dark">Level - {el.level}</p>
-                  <p className="mb-2 text-white-dark">Date -{getPrettyTime(el.date)}</p>
-                  <p className="font-semibold text-white-dark mt-4 sm:mt-8">
+                  <p className="mb-2 text-white-dark">
+                    {getPrettyTime(el.date)}
+                  </p>
+                  <p className="font-semibold text-white-dark  ">
                     Message - {el.message}
                   </p>
                 </div>

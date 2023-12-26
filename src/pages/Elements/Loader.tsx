@@ -33,7 +33,9 @@ const Loader = () => {
                 {/* Loaders with Buttons */}
                 <div className="panel" id="with_buttons">
                     <div className="flex items-center justify-between mb-5">
-                        <h5 className="font-semibold text-lg dark:text-white-light">Loaders with Buttons</h5>
+                        <h5 className="font-semibold text-lg dark:text-white-light">
+                            Loaders with Buttons
+                        </h5>
                         <button
                             onClick={() => {
                                 toggleCode('code1');
@@ -41,14 +43,27 @@ const Loader = () => {
                             className="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                         >
                             <span className="flex items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5 ltr:mr-2 rtl:ml-2"
+                                >
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         strokeWidth="1.5"
                                         strokeLinecap="round"
                                     />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                    />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
@@ -99,8 +114,8 @@ const Loader = () => {
                     </div>
                     {codeArr.includes('code1') && (
                         <CodeHighlight>
-                            <pre className='language-xml'>
-{`<button type="button" className="btn btn-info btn-lg">
+                            <pre className="language-xml">
+                                {`<button type="button" className="btn btn-info btn-lg">
     <svg>...</svg>
     Loading
 </button>
@@ -113,7 +128,8 @@ const Loader = () => {
 <button type="button" className="btn btn-secondary btn-lg">
     <span className="animate-ping w-3 h-3 ltr:mr-4 rtl:ml-4 inline-block rounded-full bg-white"></span>
     Loading
-</button>`}</pre>
+</button>`}
+                            </pre>
                         </CodeHighlight>
                     )}
                 </div>
@@ -128,14 +144,27 @@ const Loader = () => {
                             className="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                         >
                             <span className="flex items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5 ltr:mr-2 rtl:ml-2"
+                                >
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         strokeWidth="1.5"
                                         strokeLinecap="round"
                                     />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                    />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
@@ -205,8 +234,8 @@ const Loader = () => {
                     </div>
                     {codeArr.includes('code2') && (
                         <CodeHighlight>
-                            <pre className='language-xml'>
-{`<div className="flex flex-wrap items-center justify-center w-full sm:w-1/2 text-center mb-3 sm:mb-0">
+                            <pre className="language-xml">
+                                {`<div className="flex flex-wrap items-center justify-center w-full sm:w-1/2 text-center mb-3 sm:mb-0">
     <p className="w-full mb-2">Default Button</p>
     <button type="button" className="btn btn-primary btn-lg">
         <svg>...</svg>
@@ -219,7 +248,8 @@ const Loader = () => {
         Loading
         <svg>...</svg>
     </button>
-</div>`}</pre>
+</div>`}
+                            </pre>
                         </CodeHighlight>
                     )}
                 </div>
@@ -234,14 +264,27 @@ const Loader = () => {
                             className="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                         >
                             <span className="flex items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5 ltr:mr-2 rtl:ml-2"
+                                >
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         strokeWidth="1.5"
                                         strokeLinecap="round"
                                     />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                    />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
@@ -274,8 +317,8 @@ const Loader = () => {
                     </div>
                     {codeArr.includes('code3') && (
                         <CodeHighlight>
-                            <pre className='language-xml'>
-{`<span className="animate-spin border-4 border-success border-l-transparent rounded-full w-12 h-12 inline-block align-middle m-auto mb-10"></span>
+                            <pre className="language-xml">
+                                {`<span className="animate-spin border-4 border-success border-l-transparent rounded-full w-12 h-12 inline-block align-middle m-auto mb-10"></span>
 
 <span className="animate-spin border-4 border-success border-l-transparent rounded-full w-10 h-10 inline-block align-middle m-auto mb-10"></span>
 
@@ -297,7 +340,8 @@ const Loader = () => {
 
 <span className="w-3 h-3 m-auto mb-10">
     <span className="animate-ping inline-flex h-full w-full rounded-full bg-info"></span>
-</span>`}</pre>
+</span>`}
+                            </pre>
                         </CodeHighlight>
                     )}
                 </div>
@@ -312,14 +356,27 @@ const Loader = () => {
                             className="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                         >
                             <span className="flex items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5 ltr:mr-2 rtl:ml-2"
+                                >
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         strokeWidth="1.5"
                                         strokeLinecap="round"
                                     />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                    />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
@@ -357,8 +414,8 @@ const Loader = () => {
                     </div>
                     {codeArr.includes('code4') && (
                         <CodeHighlight>
-                            <pre className='language-xml'>
-{`<span className="animate-spin border-4 border-success border-l-transparent rounded-full w-10 h-10 inline-block align-middle m-auto mb-10"></span>
+                            <pre className="language-xml">
+                                {`<span className="animate-spin border-4 border-success border-l-transparent rounded-full w-10 h-10 inline-block align-middle m-auto mb-10"></span>
 
 <span className="animate-spin border-4 border-danger border-l-transparent rounded-full w-10 h-10 inline-block align-middle m-auto mb-10"></span>
 
@@ -388,7 +445,8 @@ const Loader = () => {
 
 <span className="w-4 h-4 m-auto mb-10">
     <span className="animate-ping inline-flex h-full w-full rounded-full bg-primary"></span>
-</span>`}</pre>
+</span>`}
+                            </pre>
                         </CodeHighlight>
                     )}
                 </div>
@@ -403,14 +461,27 @@ const Loader = () => {
                             className="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                         >
                             <span className="flex items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5 ltr:mr-2 rtl:ml-2"
+                                >
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         strokeWidth="1.5"
                                         strokeLinecap="round"
                                     />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                    />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
@@ -431,12 +502,13 @@ const Loader = () => {
                     </div>
                     {codeArr.includes('code5') && (
                         <CodeHighlight>
-                            <pre className='language-xml'>
-{`<span className="animate-spin border-8 border-[#f1f2f3] border-l-primary rounded-full w-14 h-14 inline-block align-middle m-auto mb-10"></span>
+                            <pre className="language-xml">
+                                {`<span className="animate-spin border-8 border-[#f1f2f3] border-l-primary rounded-full w-14 h-14 inline-block align-middle m-auto mb-10"></span>
 
 <span className="animate-[spin_2s_linear_infinite] border-8 border-[#f1f2f3] border-l-primary border-r-primary rounded-full w-14 h-14 inline-block align-middle m-auto mb-10"></span>
 
-<span className="animate-[spin_3s_linear_infinite] border-8 border-r-warning border-l-primary border-t-danger border-b-success rounded-full w-14 h-14 inline-block align-middle m-auto mb-10"></span>`}</pre>
+<span className="animate-[spin_3s_linear_infinite] border-8 border-r-warning border-l-primary border-t-danger border-b-success rounded-full w-14 h-14 inline-block align-middle m-auto mb-10"></span>`}
+                            </pre>
                         </CodeHighlight>
                     )}
                 </div>

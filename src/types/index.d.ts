@@ -1,21 +1,28 @@
 export interface DevicesFace {
-    id: number,
-    location: string
-    lat: number,
-    lng: number
-    seriya: string,
-    ip: string,
-    date: number,
-    signal: boolean,
-    port: number
+    _id: string;
+    region: RegionFace
+    lat: number;
+    lng: number;
+    serie: string;
+    device_privet_key: string;
+    ip_address: string;
+    date: number;
+    signal: 'good' | 'nosignal';
+    port: number;
+    owner: string;
+}
+export interface RegionFace {
+    _id: string;
+    name: string;
+    countDevices: number;
 }
 export interface EventFace {
-    id: number,
-    seriya: string,
-    satx: number,
-    tuzlik: number,
-    bosim: number,
-    signal: boolean,
-    date: number
+    _id: string;
+    seriya: string;
+    level: number;
+    salinity: number;
+    volume: number;
+    signal: 'good' | 'nosignal';
+    date_in_ms: number;
+    device: DevicesFace;
 }
-

@@ -334,14 +334,14 @@ const Header = () => {
                                             />
                                             <div className="ltr:pl-4 rtl:pr-4">
                                                 <h4 className="text-base">
-                                                    {user?.userData?.first_name}{' '}
-                                                    {user?.userData?.last_name}
+                                                    {user?.first_name}{' '}
+                                                    {user?.last_name}
                                                 </h4>
                                                 <button
                                                     type="button"
                                                     className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white"
                                                 >
-                                                    {user?.userData?.username}
+                                                    {user?.username}
                                                 </button>
                                             </div>
                                         </div>

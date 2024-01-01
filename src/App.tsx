@@ -52,7 +52,7 @@ function App({ children }: PropsWithChildren) {
     themeConfig.locale,
     themeConfig.semidark,
   ]);
-  const { token } = useSelector((state: IRootState) => state.data.user);
+  const { token } = useSelector((state: IRootState) => state.data);
   return (
     <div
       className={`${

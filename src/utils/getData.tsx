@@ -5,6 +5,7 @@ import { AxiosError } from 'axios';
 
 const getData = ({ url, setData, setLoading }: { url: string; setData: SetStateAction<any>; setLoading: SetStateAction<any> }) => {
     api(url)
+
         .then(res => {
             if (res.status === 200) {
                 setData(res.data);

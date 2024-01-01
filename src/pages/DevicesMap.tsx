@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../store";
 import {
   FullscreenControl,
@@ -10,9 +10,21 @@ import {
   ZoomControl,
 } from "@pbe/react-yandex-maps";
 import { Link } from "react-router-dom";
+import { DevicesFace } from '../types/index';
+import { setPageTitle } from "../store/themeConfigSlice";
+import getData from "../utils/getData";
 
 function DevicesMap() {
-  const { devices } = useSelector((state: IRootState) => state.data);
+  const dispatch = useDispatch();
+
+  const [data, setData] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
+  const [loading, setLoading] = useState(false);
+  const { serverevents, devices } = useSelector((state: IRootState) => state.data);
+  useEffect(() => {
+      dispatch(setPageTitle('Devices on map'));
+      getData ({ url: 'devices?page[limit]=1000', setData, setLoading });
+  }, []);
+  console.log(data.data);
   return (
     <div className="full  ">
       <ul className="flex space-x-2 rtl:space-x-reverse">
@@ -35,7 +47,7 @@ function DevicesMap() {
         >
           <Map
             width={"100%"}
-            height={"60vh"}
+            height={"73vh"}
             defaultState={{
               center: [40.443603, 65.198444],
               zoom: 5,
@@ -44,12 +56,12 @@ function DevicesMap() {
             <ZoomControl />
             <FullscreenControl />
             <GeolocationControl options={{ float: "left" }} />
-            {devices.map((device ,i) => {
+            {data.data.map((device ,i) => {
               return (
                 <Placemark
                 key={i}
-                  geometry={[device!.lat, device!.lng]}
-                  properties={{ iconCaption: device.location }}
+                  geometry={[device!.lat, device!.long]}
+                  properties={{ iconCaption: device.serie }}
                   
                   options={{ preset: "", iconColor: "red" }}
                 >

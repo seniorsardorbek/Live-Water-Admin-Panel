@@ -16,10 +16,9 @@ function ServerEvents () {
     const { serverevents, devices } = useSelector((state: IRootState) => state.data);
     useEffect(() => {
         dispatch(setPageTitle('Events'));
-        getData({ url: 'serverdata?page[limit]=1000', setData, setLoading });
+        getData({ url: 'serverdata', setData, setLoading });
     }, []);
 
-    console.log(data);
     return (
         <>
             <ul className='flex space-x-2 rtl:space-x-reverse'>
@@ -53,6 +52,7 @@ function ServerEvents () {
                                     <div className='flex gap-2'>
                                         <p className='mb-2 text-white-dark'>{getHourAndMinutesFromTimestamp(el.send_data_in_ms)}</p>
                                         <p className='mb-2 text-white-dark'>{getDateFromTimestamp(el?.send_data_in_ms)}</p>
+                                        <p className='mb-2 text-white-dark'>{getPrettyTime(el?.created_at)}</p>
                                     </div>
                                     <p className='font-semibold text-white-dark  '>Message - {el?.message}</p>
                                 </div>

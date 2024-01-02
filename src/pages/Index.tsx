@@ -20,7 +20,6 @@ const Index = () => {
     }>({ data: [] });
     const [loading, setLoading] = useState(false);
 
-    console.log(baseData);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Dashboard'));
@@ -28,7 +27,6 @@ const Index = () => {
     }, []);
     const isDark = useSelector((state: IRootState) => state.themeConfig.theme) === 'dark' ? true : false;
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
-console.log(getOneMinuteBeforeCurrentTime());
     return (
         <div>
           

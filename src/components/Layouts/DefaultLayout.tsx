@@ -36,7 +36,6 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
         window.addEventListener('scroll', onScrollHandler);
         api('auth', { headers: { authorization: `Bearer ${token}` } })
         .then(res => {
-            console.log(res);
             if (res.status === 200) {
                 dispatch(setUser({ user: res?.data?.data }));
                 setShowLoader(false);

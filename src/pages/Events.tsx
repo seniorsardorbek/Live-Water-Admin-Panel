@@ -54,7 +54,6 @@ function Events () {
             }
         });
     }
-    console.log(events);
     return (
         <>
             <ul className='flex space-x-2 rtl:space-x-reverse'>

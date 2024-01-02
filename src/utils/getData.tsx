@@ -13,7 +13,6 @@ const getData = ({ url, setData, setLoading }: { url: string; setData: SetStateA
             }
         })
         .catch((err: AxiosError) => {
-            console.log(err);
             toast.fire({
                 text: err.message,
                 toast: true,

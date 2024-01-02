@@ -24,7 +24,6 @@ function DevicesMap() {
       dispatch(setPageTitle('Devices on map'));
       getData ({ url: 'devices?page[limit]=1000', setData, setLoading });
   }, []);
-  console.log(data.data);
   return (
     <div className="full  ">
       <ul className="flex space-x-2 rtl:space-x-reverse">
@@ -39,18 +38,15 @@ function DevicesMap() {
       </ul>
       <div className="mt-5">
         <YMaps 
-          query={{
-            suggest_apikey: "d6731aa6-00f1-4319-9583-87938fbc50f9",
-            apikey: "d6731aa6-00f1-4319-9583-87938fbc50f9",
-          }}
+          query={{suggest_apikey: "d6731aa6-00f1-4319-9583-87938fbc50f9",apikey: "d6731aa6-00f1-4319-9583-87938fbc50f9",}}
         
         >
           <Map
             width={"100%"}
             height={"73vh"}
             defaultState={{
-              center: [40.443603, 65.198444],
-              zoom: 5,
+              center: [40.784389, 72.334387],
+              zoom: 10,
             }}
           >
             <ZoomControl />

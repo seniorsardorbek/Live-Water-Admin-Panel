@@ -55,9 +55,7 @@ const AddDevice = () => {
     e.preventDefault();
     dispatch(addDevice({ ...data, date: compileTime(date2) }));
     navigate("/devices");
-    console.log({ ...data, date: compileTime(date2) });
   };
-  console.log(data);
 
   return (
     <div>

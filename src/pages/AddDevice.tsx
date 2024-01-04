@@ -9,10 +9,7 @@ import { IRootState } from '../store';
 import { RegionFace, UserFace } from '../types';
 import { api } from '../utils/api';
 import getData from '../utils/getData';
-const options3 = [
-    { value: 'Signal yoq', label: "Signal yo'q" },
-    { value: 'Yaxshi', label: 'Yaxshi' }
-];
+
 const AddDevice = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();

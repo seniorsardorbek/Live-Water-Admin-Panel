@@ -17,7 +17,6 @@ const Widgets = () => {
 
     const [loading] = useState(false);
 
-    //Revenue Chart
     const revenueChart: any = {
         series: [
             {

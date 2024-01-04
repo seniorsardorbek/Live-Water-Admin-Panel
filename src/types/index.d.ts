@@ -23,7 +23,7 @@ export interface UserFace{
 export interface RegionFace {
     _id: string;
     name: string;
-    countDevices: number;
+    devicesCount: number;
 }
 export interface EventFace {
     [key: string]: string | number | boolean;

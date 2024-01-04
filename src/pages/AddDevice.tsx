@@ -1,18 +1,14 @@
 import 'flatpickr/dist/flatpickr.css';
 import React, { useEffect, useState } from 'react';
-import Flatpickr from 'react-flatpickr';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { addDevice } from '../store/dataConfigSlice';
-import { compileTime, convertDateFormat } from '../utils/utils';
-import getData from '../utils/getData';
-import { RegionFace, UserFace } from '../types';
 import MaskedInput from 'react-text-mask';
+import Swal from 'sweetalert2';
 import { IRootState } from '../store';
+import { RegionFace, UserFace } from '../types';
 import { api } from '../utils/api';
-import { toast } from '../utils/toast';
+import getData from '../utils/getData';
 const options3 = [
     { value: 'Signal yoq', label: "Signal yo'q" },
     { value: 'Yaxshi', label: 'Yaxshi' }

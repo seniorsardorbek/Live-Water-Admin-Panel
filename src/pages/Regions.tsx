@@ -6,11 +6,13 @@ import { IRootState } from '../store';
 import getData from '../utils/getData';
 import Swal from 'sweetalert2';
 import { api } from '../utils/api';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Regions = () => {
     const [regions, setRegions] = useState<{ total: number; offset: number; data: RegionFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState<boolean>(false);
+    const [data, setData] = useState({});
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Regions List'));
@@ -30,8 +32,8 @@ const Regions = () => {
     function deleteDevice (id: string) {
         Swal.fire({
             icon: 'warning',
-            title: 'O\'chirishga aminmisiz?',
-            text: "Siz buni qayta tiklab olmaysiz!",
+            title: "O'chirishga aminmisiz?",
+            text: 'Siz buni qayta tiklab olmaysiz!',
             showCancelButton: true,
             confirmButtonText: 'Delete',
             padding: '2em',
@@ -41,9 +43,9 @@ const Regions = () => {
                 api.delete(`regions/${id}`, { headers: { authorization: `Bearer ${token}` } })
                     .then(res => {
                         Swal.fire({ title: "O'chirildi!!", text: res.data.msg, icon: 'success', customClass: 'sweet-alerts' });
-                        const index  = regions.data.findIndex((el) => el._id === id);
-                        regions.data.splice( index , 1 )
-                        setRegions({ ...regions , data :  regions.data})
+                        const index = regions.data.findIndex(el => el._id === id);
+                        regions.data.splice(index, 1);
+                        setRegions({ ...regions, data: regions.data });
                     })
                     .catch(error => {
                         Swal.fire({ title: "O'chirilmadi!", text: error.message, icon: 'error', customClass: 'sweet-alerts' });
@@ -51,14 +53,48 @@ const Regions = () => {
             }
         });
     }
+    const handleChange = (e: any) => {
+        setData(prevData => ({
+            ...prevData,
+            [e.target.name]: e.target.value
+        }));
+    };
+    function addRegion (e: React.FormEvent) {
+        e.preventDefault();
+        api.post('regions', data)
+            .then(res => {
+                Swal.fire({ title: 'Muvaffaqqiyatli!', text: res.data.msg, icon: 'success', customClass: 'sweet-alerts' });
+            })
+            .catch(err => {
+                Swal.fire({ title: 'Xatolik!', text: err.message, icon: 'error', customClass: 'sweet-alerts' });
+            });
+    }
+    console.log(regions);
     return (
         <div>
+            <ul className='flex space-x-2 rtl:space-x-reverse'>
+                <li>
+                    <Link to='/' className='text-primary hover:underline'>
+                        Dashboard
+                    </Link>
+                </li>
+                <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+                    <span>Regions</span>
+                </li>
+            </ul>
+            <form onSubmit={e => addRegion(e)} className='flex  gap-5 items-center justify-center w-[500px] my-3 '>
+                <input name='nae' onChange={e => handleChange(e)} type='text' placeholder='Region..' className='form-input' required />
+                <button type='submit' className='btn btn-primary  '>
+                    Qo'shish
+                </button>
+            </form>
             <div className='table-responsive mb-5 w-full'>
                 <table>
                     <thead>
                         <tr>
                             <th className='text-center text-xs'>#</th>
-                            <th className='text-center text-xs'>Serie</th>
+                            <th className='text-center text-xs'>Hudud</th>
+                            <th className='text-center text-xs'>Qurilmalar soni</th>
                             <th className='text-center text-xs'></th>
                         </tr>
                     </thead>
@@ -69,6 +105,9 @@ const Regions = () => {
                                     <td className=''>{i + 1}</td>
                                     <td className=''>
                                         <div className='whitespace-nowrap text-xs'>{data?.name}</div>
+                                    </td>
+                                    <td className=''>
+                                        <div className='whitespace-nowrap text-xs '>{data?.devicesCount}</div>
                                     </td>
                                     <td className='flex gap-4 items-center w-max mx-auto'>
                                         <NavLink to={`/regions/${data._id}`} className='flex hover:text-info'>

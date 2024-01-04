@@ -159,23 +159,10 @@ const dataConfigSlice = createSlice({
         setUser (state, { payload }) {
             state.user = payload.user;
         },
-        // ! addDevice
-        addEvent (state, { payload }) {
-            state.events.push(payload.newModem);
-        },
-        // ! deleteModem
-        deleteEvent (state, { payload }) {
-            const ind = state.events.findIndex(el => el._id === payload._id);
-            state.events.splice(ind, 1);
-        },
-
-        // !
-        addDevice (state, { payload }) {
-            // state.devices.push({ ...payload, _id: state.devices.length + 1 });
-        }
+       
     }
 });
 
-export const { addEvent, deleteEvent, addDevice, setUser, setToken } = dataConfigSlice.actions;
+export const {  setUser, setToken } = dataConfigSlice.actions;
 
 export default dataConfigSlice.reducer;

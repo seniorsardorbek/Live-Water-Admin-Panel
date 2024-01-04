@@ -119,6 +119,7 @@ const Sidebar = () => {
                 <NavLink to="/events" className="group">
                   <div className="flex items-center">
                     <svg
+                     className="group-hover:!text-primary"  
                       width="29"
                       height="29"
                       viewBox="0 0 29 29"
@@ -126,6 +127,7 @@ const Sidebar = () => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
+                       className="group-hover:!text-primary text-red-700"
                         d="M16.5 3.5L16.5 12.5L25.5 12.5C25.5 7.529 21.471 3.5 16.5 3.5Z"
                         stroke="#565E6C"
                         strokeWidth="2.4"

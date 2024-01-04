@@ -1,18 +1,13 @@
-import sortBy from 'lodash/sortBy';
-import { DataTable, DataTableSortStatus } from 'mantine-datatable';
+import { DataTable } from 'mantine-datatable';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import { GreenDot, RedDot } from '../../public/assets/svgs';
-import { IRootState } from '../store';
-import { addDevice } from '../store/dataConfigSlice';
-import { setPageTitle } from '../store/themeConfigSlice';
-import { getDateFromTimestamp, getHourAndMinutesFromTimestamp, getPrettyTime } from '../utils/utils';
-import { DevicesFace } from '../types';
-import getData from '../utils/getData';
-import { api } from '../utils/api';
-import { toast } from '../utils/toast';
 import Swal from 'sweetalert2';
+import { IRootState } from '../store';
+import { setPageTitle } from '../store/themeConfigSlice';
+import { DevicesFace } from '../types';
+import { api } from '../utils/api';
+import getData from '../utils/getData';
 function Devices () {
     const [devices, setDevices] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState<boolean>(false);
@@ -204,7 +199,7 @@ function Devices () {
                             onPageChange={p => setPage(p)}
                             recordsPerPageOptions={PAGE_SIZES}
                             onRecordsPerPageChange={setPageSize}
-                            paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
+                            paginationText={({ from, to, totalRecords }) =>  `${totalRecords}qurilmalardan   ${from}dan ${to}gacha  qurilmalar ko'rsatilyapti`}
                         />
                     </div>
                 </div>

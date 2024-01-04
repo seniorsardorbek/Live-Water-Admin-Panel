@@ -104,6 +104,7 @@ const Devices = lazy(() => import('../pages/Devices'));
 const DevicesMap = lazy(() => import('../pages/DevicesMap'));
 const AddDevice = lazy(() => import('../pages/AddDevice'));
 const PreviewDevice = lazy(() => import('../pages/PreviewDevice'));
+const Regions = lazy(() => import('../pages/Regions'));
 
 const routes = [
     // dashboard
@@ -137,6 +138,10 @@ const routes = [
     {
         path: '/events',
         element: <ServerEvent />,
+    },
+    {
+        path: '/regions',
+        element: <Regions />,
     },
     {
         path: '/devices',

@@ -14,7 +14,7 @@ import { toast } from '../../utils/toast';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-    const { token, user } = useSelector((state: IRootState) => state.data);
+    const { token } = useSelector((state: IRootState) => state.data);
     const dispatch = useDispatch();
 
     const [showLoader, setShowLoader] = useState(true);

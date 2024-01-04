@@ -1,7 +1,7 @@
 import 'flatpickr/dist/flatpickr.css';
 import { useEffect, useState } from 'react';
 import Flatpickr from 'react-flatpickr';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GreenDot, RedDot } from '../../public/assets/svgs';
 import { setPageTitle } from '../store/themeConfigSlice';
@@ -9,6 +9,8 @@ import { DevicesFace, EventFace, RegionFace } from '../types';
 import getData from '../utils/getData';
 import { compileTimes, getDateFromTimestamp, getHourAndMinutesFromTimestamp } from '../utils/utils';
 import { downloadExcel } from 'react-export-table-to-excel';
+import { Miniloader } from './Component/Miniloader';
+import { IRootState } from '../store';
 function Events () {
     const dispatch = useDispatch();
     const [date3, setDate3] = useState<any>([]);
@@ -20,28 +22,33 @@ function Events () {
     const [devices, setDevices] = useState<{ data: DevicesFace[] }>({ data: [] });
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(0);
+    const { token } = useSelector((state: IRootState) => state.data);
+
     const header = ['_id', 'level', 'volume', 'salinity', 'date_in_ms'];
     useEffect(() => {
         dispatch(setPageTitle('Events'));
-        getData({ url: '/regions', setData: setRegions, setLoading });
+        getData({ url: '/regions', setData: setRegions , token });
     }, []);
     useEffect(() => {
-        getData({ url: `/devices/reg?${data?.region ? `filter[region]=${data.region}` : ''}`, setData: setDevices, setLoading });
+        getData({ url: `/devices/reg?${data?.region ? `filter[region]=${data.region}` : ''}`, setData: setDevices , token });
     }, [data?.region]);
     useEffect(() => {
         getData({
             url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}`,
             setData: setEvents,
-            setLoading
+            setLoading,
+            token
         });
     }, [page]);
 
     const filter = (e: React.FormEvent) => {
         e.preventDefault();
+        setPage(0);
         getData({
             url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}`,
             setData: setEvents,
-            setLoading
+            setLoading ,
+            token
         });
     };
     function handleDownloadExcel () {
@@ -79,7 +86,7 @@ function Events () {
                                 <path opacity='0.5' d='M13 2.5V5C13 7.35702 13 8.53553 13.7322 9.26777C14.4645 10 15.643 10 18 10H22' stroke='currentColor' strokeWidth='1.5' />
                                 <path opacity='0.5' d='M7 14L6 15L7 16M11.5 16L12.5 17L11.5 18M10 14L8.5 18' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
                             </svg>
-                            Exel
+                            Sahifadan yuklash
                         </button>
                         <a
                             href={`http://livewater.uz:4000/basedata/xlsx/?${from ? `&filter[start]=${from}` : ''}${to ? `&filter[end]=${to}` : ''}${device ? `&filter[device]=${device}` : ''}`}
@@ -93,7 +100,7 @@ function Events () {
                                 <path opacity='0.5' d='M13 2.5V5C13 7.35702 13 8.53553 13.7322 9.26777C14.4645 10 15.643 10 18 10H22' stroke='currentColor' strokeWidth='1.5' />
                                 <path opacity='0.5' d='M7 14L6 15L7 16M11.5 16L12.5 17L11.5 18M10 14L8.5 18' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
                             </svg>
-                            Exel
+                            Constructordan yuklash
                         </a>
                     </div>
                 </div>
@@ -115,8 +122,8 @@ function Events () {
                                 <input onChange={e => setData({ region: e.target.value })} type='radio' name='outline_radio' value={''} className='form-radio outline-success' />
                                 <span>Hammasi</span>
                             </label>
-                            {regions.data.map(el => (
-                                <label className='inline-flex justify-between items-center'>
+                            {regions.data.map((el , i) => (
+                                <label key={i} className='inline-flex justify-between items-center'>
                                     <input onChange={e => setData({ region: e.target.value })} type='radio' name='outline_radio' value={el._id} className='form-radio outline-success' />
                                     <span>{el.name}</span>
                                 </label>
@@ -130,7 +137,9 @@ function Events () {
                                 </option>
                             ))}
                         </select>
-                        <div className='mb-5 w-[80%]' id='limit_tagging'></div>
+                        <div className='mb-5 flex items-center justify-center w-[80%] h-4' id='limit_tagging'>
+                            {loading ? <Miniloader /> : ''}
+                        </div>
                         <button type='submit' className='btn btn-outline-primary w-full '>
                             <svg className='w-4 h-4 text-gray-800 dark:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'>
                                 <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z' />
@@ -170,10 +179,10 @@ function Events () {
                                                 <div className='whitespace-nowrap text-center '>{data?.volume}</div>
                                             </td>
                                             <td className=''>
-                                                <div className=' block '>{getHourAndMinutesFromTimestamp(data?.date_in_ms)}</div>
+                                                <div className=' block '>{getHourAndMinutesFromTimestamp(data?.date_in_ms || 0)}</div>
                                             </td>
                                             <td className=''>
-                                                <div className=' '>{getDateFromTimestamp(data?.date_in_ms)}</div>
+                                                <div className=' '>{getDateFromTimestamp(data?.date_in_ms || 0)}</div>
                                             </td>
                                             <td className=''>
                                                 <div className='whitespace-nowrap   flex items-center gap-2'>
@@ -190,7 +199,7 @@ function Events () {
                             <li>
                                 <button
                                     disabled={page === 0}
-                                    onClick={() => setPage(page - 1)}
+                                    onClick={() => !loading && setPage(page - 1)}
                                     type='button'
                                     className='flex justify-center font-semibold p-2 rounded-full transition bg-white-light text-dark hover:text-white hover:bg-primary dark:text-white-light dark:bg-[#191e3a] dark:hover:bg-primary'
                                 >
@@ -202,7 +211,7 @@ function Events () {
                             {page > 0 && (
                                 <li>
                                     <button
-                                        onClick={() => setPage(page)}
+                                        onClick={() => !loading && setPage(page)}
                                         type='button'
                                         className={`flex justify-center items-center w-10 h-10 font-semibold p-2 rounded-full transition bg-white-light text-dark hover:text-white hover:bg-primary dark:text-white-light dark:bg-[#191e3a] dark:hover:bg-primary`}
                                     >
@@ -222,7 +231,7 @@ function Events () {
                                 <li>
                                     <button
                                         disabled={events?.total / events?.limit <= page + 2}
-                                        onClick={() => setPage(page + 2)}
+                                        onClick={() => !loading && setPage(page + 2)}
                                         type='button'
                                         className={`flex justify-center items-center w-10 h-10 font-semibold p-2 rounded-full transition bg-white-light text-dark hover:text-white hover:bg-primary dark:text-white-light dark:bg-[#191e3a] dark:hover:bg-primary`}
                                     >
@@ -234,7 +243,7 @@ function Events () {
                             <li>
                                 <button
                                     disabled={events?.total / events?.limit <= page + 1}
-                                    onClick={() => setPage(page + 1)}
+                                    onClick={() => !loading && setPage(page + 1)}
                                     type='button'
                                     className='flex justify-center font-semibold p-2 rounded-full transition bg-white-light text-dark hover:text-white hover:bg-primary dark:text-white-light dark:bg-[#191e3a] dark:hover:bg-primary'
                                 >

@@ -9,8 +9,17 @@ export interface DevicesFace {
     date: number;
     signal: 'good' | 'nosignal';
     port: number;
-    owner: string;
+    owner: UserFace
+    created_at : string;
+    updated_at : string
 }
+export interface UserFace{
+    _id : string;
+    first_name :  string;
+    last_name : string;
+    username : string;
+    role : string;
+} 
 export interface RegionFace {
     _id: string;
     name: string;
@@ -18,13 +27,13 @@ export interface RegionFace {
 }
 export interface EventFace {
     [key: string]: string | number | boolean;
-    _id: string;
-    level: number;
-    salinity: number;
-    volume: number;
-    signal: 'good' | 'nosignal';
-    date_in_ms: number;
-    device: DevicesFace;
+    _id?: string;
+    level?: number;
+    salinity?: number;
+    volume?: number;
+    signal?: 'good' | 'nosignal';
+    date_in_ms?: number;
+    device?: DevicesFace;
 }
 export interface ServerdataFace {
     [key: string]: string | number | boolean;

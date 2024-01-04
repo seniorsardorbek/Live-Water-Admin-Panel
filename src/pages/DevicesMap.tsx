@@ -16,13 +16,13 @@ import getData from "../utils/getData";
 
 function DevicesMap() {
   const dispatch = useDispatch();
+  const { token } = useSelector((state: IRootState) => state.data);
 
   const [data, setData] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
   const [loading, setLoading] = useState(false);
-  const { serverevents, devices } = useSelector((state: IRootState) => state.data);
   useEffect(() => {
       dispatch(setPageTitle('Devices on map'));
-      getData ({ url: 'devices?page[limit]=1000', setData, setLoading });
+      getData ({ url: 'devices?page[limit]=1000', setData, setLoading , token });
   }, []);
   return (
     <div className="full  ">

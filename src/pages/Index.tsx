@@ -1,50 +1,46 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '../store';
-import ReactApexChart from 'react-apexcharts';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import Dropdown from '../components/Dropdown';
-import { setPageTitle } from '../store/themeConfigSlice';
 import { BlueDot, GreenDot, RedDot } from '../../public/assets/svgs';
-import { getDateFromTimestamp, getHourAndMinutesFromTimestamp, getOneMinuteBeforeCurrentTime } from '../utils/utils';
+import { IRootState } from '../store';
+import { setPageTitle } from '../store/themeConfigSlice';
 import { EventFace } from '../types';
-import getData from '../utils/getData';
+import { api } from '../utils/api';
+import { getDateFromTimestamp, getHourAndMinutesFromTimestamp } from '../utils/utils';
 
 const Index = () => {
-    const [baseData, setBaseData] = useState<{
-        total?: number;
-        limit?: number;
-        data: EventFace[];
-        offset?: number;
-    }>({ data: [] });
+    const [baseData, setBaseData] = useState<EventFace[]>([]);
+    const [stat, setStat] = useState<{ total: number; good: number; bad: number }>({ total: 0, good: 0, bad: 0 });
     const [loading, setLoading] = useState(false);
+    const { token } = useSelector((state: IRootState) => state.data);
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Dashboard'));
-        getData({ url: '/basedata?page[limit]=100', setData: setBaseData, setLoading });
+        api('basedata?page[limit]=50').then(res => {
+            const { data } = res.data;
+            const last_updated = data.filter((el: EventFace) => el?.date_in_ms === data[0].date_in_ms);
+            const bad = last_updated.filter((el: EventFace) => el.signal === 'nosignal');
+            const good = last_updated.filter((el: EventFace) => el.signal === 'good');
+            setStat({ total: last_updated.length, good: good.length, bad: bad.length });
+            setBaseData(last_updated);
+        });
     }, []);
-    const isDark = useSelector((state: IRootState) => state.themeConfig.theme) === 'dark' ? true : false;
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
     return (
         <div>
-          
-
             <div className='flex flex-wrap w-full justify-evenly mb-5'>
                 <div className='border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] md:p-6 p-1 relative'>
                     <h5 className='text-dark md:text-lg text-sm font-semibold  flex items-center gap-4 dark:text-white-light'>
-                        <BlueDot /> Barchasi: {0}
+                        <BlueDot /> Barchasi: {stat.total}
                     </h5>
                 </div>
                 <div className='border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] md:p-6 p-1 relative'>
                     <h5 className='text-dark md:text-lg text-sm font-semibold  flex items-center gap-4 dark:text-white-light'>
-                        <GreenDot /> Yaxshi: {0}
+                        <GreenDot /> Yaxshi: {stat.good}
                     </h5>
                 </div>
                 <div className='border border-gray-500/20 rounded-md w-1/4 shadow-[rgb(31_45_61_/_10%)_0px_2px_10px_1px] dark:shadow-[0_2px_11px_0_rgb(6_8_24_/_39%)] md:p-6 p-1 relative'>
                     <h5 className='text-dark md:text-lg text-sm font-semibold  flex items-center gap-4 dark:text-white-light'>
-                        <RedDot /> Signal yoq: {0}
+                        <RedDot /> Signal yoq: {stat.bad}
                     </h5>
                 </div>
             </div>
@@ -63,12 +59,12 @@ const Index = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {baseData.data?.map((data , i) => {
+                        {baseData?.map((data, i) => {
                             return (
                                 <tr key={data._id}>
                                     <td className=' '>{i + 1}</td>
                                     <td className=' '>
-                                        <div className='whitespace-nowrap'>{data.device.serie}</div>
+                                        <div className='whitespace-nowrap'>{data?.device?.serie}</div>
                                     </td>
                                     <td className=' '>
                                         <div className='whitespace-nowrap'>{data.level}</div>
@@ -81,10 +77,10 @@ const Index = () => {
                                     </td>
 
                                     <td className=' '>
-                                        <div className='whitespace-nowrap  '>{getHourAndMinutesFromTimestamp(data.date_in_ms)}</div>
+                                        <div className='whitespace-nowrap  '>{getHourAndMinutesFromTimestamp(data?.date_in_ms || 0)}</div>
                                     </td>
                                     <td className=' '>
-                                        <div className='whitespace-nowrap  '>{getDateFromTimestamp(data.date_in_ms)}</div>
+                                        <div className='whitespace-nowrap  '>{getDateFromTimestamp(data?.date_in_ms || 0)}</div>
                                     </td>
                                     <td className=' '>
                                         <div className='whitespace-nowrap    flex items-center gap-2'>
@@ -92,23 +88,6 @@ const Index = () => {
                                             {data.signal ? <GreenDot /> : <RedDot />} {data.signal ? 'Yaxshi' : "Signal yo'q"}{' '}
                                         </div>
                                     </td>
-                                    {/* <td >
-                            <div
-                                className={`whitespace-nowrap ${
-                                    data.status === 'completed'
-                                        ? 'text-success'
-                                        : data.status === 'Pending'
-                                        ? 'text-secondary'
-                                        : data.status === 'In Progress'
-                                        ? 'text-info'
-                                        : data.status === 'Canceled'
-                                        ? 'text-danger'
-                                        : 'text-success'
-                                      }`}
-                                      >
-                                {data.progress}
-                            </div>
-                              </td> */}
                                 </tr>
                             );
                         })}

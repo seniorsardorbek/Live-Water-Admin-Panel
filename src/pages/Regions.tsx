@@ -11,7 +11,7 @@ import { Link, NavLink } from 'react-router-dom';
 const Regions = () => {
     const [regions, setRegions] = useState<{ total: number; offset: number; data: RegionFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState<boolean>(false);
-    const [data, setData] = useState({});
+    const [data, setData] = useState({ name: '' });
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -64,6 +64,8 @@ const Regions = () => {
         api.post('regions', data)
             .then(res => {
                 Swal.fire({ title: 'Muvaffaqqiyatli!', text: res.data.msg, icon: 'success', customClass: 'sweet-alerts' });
+                setRegions({ ...regions, ...data });
+                setData({ name: '' });
             })
             .catch(err => {
                 Swal.fire({ title: 'Xatolik!', text: err.message, icon: 'error', customClass: 'sweet-alerts' });
@@ -83,7 +85,7 @@ const Regions = () => {
                 </li>
             </ul>
             <form onSubmit={e => addRegion(e)} className='flex  gap-5 items-center justify-center w-[500px] my-3 '>
-                <input name='nae' onChange={e => handleChange(e)} type='text' placeholder='Region..' className='form-input' required />
+                <input value={data.name} name='name' onChange={e => handleChange(e)} type='text' placeholder='Region..' className='form-input' required />
                 <button type='submit' className='btn btn-primary  '>
                     Qo'shish
                 </button>
@@ -151,7 +153,6 @@ const Regions = () => {
                                                 ></path>
                                             </svg>
                                         </button>
-                                        {/* </NavLink> */}
                                     </td>
                                 </tr>
                             );

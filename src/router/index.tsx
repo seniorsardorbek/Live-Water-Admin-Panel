@@ -7,13 +7,13 @@ import { IRootState } from '../store';
 
 const DefaultRouterProvider = () => {
     const role = useSelector((state: IRootState) => state.data.role);
+    console.log(role);
     const finalRoutes = routes.map(route => {
         return {
             ...route,
             element: route.layout === 'blank' ? <BlankLayout>{route.element}</BlankLayout> : <DefaultLayout>{route.element}</DefaultLayout>
         };
     });
-    console.log(role);
     const sortedRoutes = finalRoutes.filter(route => route.for === role);
     const router = createBrowserRouter(sortedRoutes);
     return <RouterProvider router={router} />;

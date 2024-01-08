@@ -71,7 +71,6 @@ const Regions = () => {
                 Swal.fire({ title: 'Xatolik!', text: err.message, icon: 'error', customClass: 'sweet-alerts' });
             });
     }
-    console.log(regions);
     return (
         <div>
             <ul className='flex space-x-2 rtl:space-x-reverse'>

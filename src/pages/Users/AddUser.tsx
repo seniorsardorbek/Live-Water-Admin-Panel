@@ -6,7 +6,7 @@ import { Miniloader } from '../Component/Miniloader';
 import { toast } from '../../utils/toast';
 
 const AddUser = () => {
-    const [user, setUser] = useState<UserFace>({});
+    const [user, setUser] = useState<UserFace>();
     const [regions, setRegions] = useState<RegionFace[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const navigate =  useNavigate()
@@ -17,7 +17,7 @@ const AddUser = () => {
     }, []);
     const handleChange = (e: any) => {
         setUser(prevData => ({
-            ...prevData,
+            ...prevData!,
             [e.target.name]: e.target.value
         }));
     };
@@ -31,12 +31,10 @@ const AddUser = () => {
                 navigate(-1)
             })  
             .catch(err => {
-                console.log(err);
                 setLoading(false);
                 toast.fire({ icon: 'error', padding: '10px 20px', title: err.message });
             });
     };
-console.log(user);
     return (
         <>
             <ul className='flex space-x-2 rtl:space-x-reverse'>

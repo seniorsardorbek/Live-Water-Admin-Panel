@@ -1,7 +1,10 @@
 import { lazy } from 'react';
 
-// ?Index for Operator
+// ?Index for Admin
 const Index = lazy(() => import('../pages/Index'));
+
+// ?Index for Operator
+const IndexOperator = lazy(() => import('../pages/IndexOperator'));
 // ? Users
 const PreviewUser = lazy(() => import('../pages/Users/PreviewUser'));
 const Users = lazy(() => import('../pages/Users/Users'));
@@ -56,6 +59,11 @@ const routes = [
         path: '/',
         for: 'admin',
         element: <Index />
+    },
+    {
+        path: '/',
+        for: 'operator',
+        element: <IndexOperator />
     },
 
     {

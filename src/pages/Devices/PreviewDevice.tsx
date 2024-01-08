@@ -73,7 +73,6 @@ const PreviewDevice = () => {
             padding: '2em',
             customClass: 'sweet-alerts'
         }).then(result => {
-            console.log(result.isConfirmed);
             if (result.isConfirmed) {
                 api.delete(`devices/${id}`, { headers: { authorization: `Bearer ${token}` } })
                     .then(res => {
@@ -221,7 +220,7 @@ const PreviewDevice = () => {
                             </div>
                         </div>
                         <div className='flex justify-between mt-20'>
-                            <button type='button' className='btn   btn-danger '>
+                            <button onClick={deleteDevice} type='button' className='btn   btn-danger '>
                                 O'chirish
                             </button>
                             <button type='submit' className='btn   btn-outline-primary '>

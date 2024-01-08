@@ -45,10 +45,10 @@ const AddDevice = () => {
         e.preventDefault();
         api.post('devices', data, { headers: { authorization: `Bearer ${token}` } })
             .then(res => {
-                console.log(res);
+                toast.fire({ icon: 'success', padding: '10px 20px', title: 'Qo\'shildi!' });
             })
             .catch(err => {
-                console.log(err);
+                toast.fire({ icon: 'error', padding: '10px 20px', title: err.message });
             });
     };
 

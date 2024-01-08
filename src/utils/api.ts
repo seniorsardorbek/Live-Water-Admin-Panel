@@ -1,4 +1,4 @@
-import axios, { AxiosHeaderValue, AxiosHeaders, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { toast } from './toast';
 export const api = axios.create({
     baseURL: `http://livewater.uz:4000`,
@@ -7,7 +7,6 @@ export const api = axios.create({
 
 export const deleteItem = (url: string, header: AxiosRequestConfig<any>) => {
     api.delete(url, header).then(res => {
-        console.log(res);
         toast.fire({
             text: "Muvaffaqqiyatli o'chirildi",
             toast: true,

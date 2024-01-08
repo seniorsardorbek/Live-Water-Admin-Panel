@@ -6,10 +6,7 @@ const rawCookieData = Cookies.get('data');
 const initialState = {
     token: Cookies.get('passport') || false,
     user: rawCookieData ? JSON.parse(rawCookieData) : false,
-    isDarkMode: false,
-    all: 4,
-    bads: 3,
-    goods: 1
+    role :  "admin"
 };
 
 const dataConfigSlice = createSlice({
@@ -24,10 +21,13 @@ const dataConfigSlice = createSlice({
         },
         setUser (state, { payload }) {
             state.user = payload.user;
+        },
+        setRole (state, { payload }) {
+            state.role = payload.role;
         }
     }
 });
 
-export const { setUser, setToken } = dataConfigSlice.actions;
+export const { setUser, setToken ,setRole} = dataConfigSlice.actions;
 
 export default dataConfigSlice.reducer;

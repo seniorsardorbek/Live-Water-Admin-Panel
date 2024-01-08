@@ -9,7 +9,7 @@ import Setting from './Setting';
 import Sidebar from './Sidebar';
 import Portals from '../../components/Portals';
 import { api } from '../../utils/api';
-import { setToken, setUser } from '../../store/dataConfigSlice';
+import { setRole, setToken, setUser } from '../../store/dataConfigSlice';
 import { toast } from '../../utils/toast';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
@@ -38,6 +38,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
         .then(res => {
             if (res.status === 200) {
                 dispatch(setUser({ user: res?.data?.data }));
+                dispatch(setRole({ user: res?.data?.role }));
                 setShowLoader(false);
             } else {
                 toast.fire({

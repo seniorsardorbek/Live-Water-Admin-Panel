@@ -1,6 +1,5 @@
 
 function PreviewDevice() {
-
   return (
     <div>
       Developmentda

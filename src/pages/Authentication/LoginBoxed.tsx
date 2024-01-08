@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../store';
 import React, { useEffect, useState } from 'react';
 import { setPageTitle } from '../../store/themeConfigSlice';
-import { setToken, setUser } from '../../store/dataConfigSlice';
+import { setRole, setToken, setUser } from '../../store/dataConfigSlice';
 import { api } from '../../utils/api';
 import { toast } from '../../utils/toast';
 
@@ -30,8 +30,9 @@ const LoginBoxed = () => {
         api.post('/auth/login', data, { headers: { 'Content-type': 'application/json' } })
             .then((res) => {
                 if (res.status === 200) {
-                    const { token, msg } = res.data;
+                    const { token, msg  } = res.data;
                     dispatch(setToken({ token }));
+                  
                     toast.fire({
                         icon: 'success',
                         title: msg || 'Copied successfully.',

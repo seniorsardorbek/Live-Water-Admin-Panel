@@ -45,12 +45,13 @@ function Devices () {
         }).then(result => {
             console.log(result.isConfirmed);
             if (result.isConfirmed) {
-                api.delete(`devices/${id}`, { headers: { authorization: `Bearer ${token}` } }).then(res => {
-                    Swal.fire({ title: 'Deleted!', text: res.data.msg, icon: 'success', customClass: 'sweet-alerts' });
-                }).catch((error)=>{
-                    Swal.fire({ title: 'O\'chirilmadi!', text: error.message, icon: 'error', customClass: 'sweet-alerts' });
-
-                });
+                api.delete(`devices/${id}`, { headers: { authorization: `Bearer ${token}` } })
+                    .then(res => {
+                        Swal.fire({ title: 'Deleted!', text: res.data.msg, icon: 'success', customClass: 'sweet-alerts' });
+                    })
+                    .catch(error => {
+                        Swal.fire({ title: "O'chirilmadi!", text: error.message, icon: 'error', customClass: 'sweet-alerts' });
+                    });
             }
         });
     }
@@ -69,6 +70,7 @@ function Devices () {
             <div className='panel px-0 border-white-light dark:border-[#1b2e4b] mt-5'>
                 <div className='invoice-table'>
                     <div className='mb-4.5 px-5 flex md:items-center md:flex-row flex-col gap-5'>
+                        <h5 className='font-semibold text-lg dark:text-white-light'>Barcha qurilmalar ({devices?.total})</h5>
                         <div className='flex items-center gap-2'>
                             <Link to='/device/add' className='btn btn-primary gap-2'>
                                 <svg className='w-5 h-5' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='1.5' fill='none' strokeLinecap='round' strokeLinejoin='round'>
@@ -199,7 +201,7 @@ function Devices () {
                             onPageChange={p => setPage(p)}
                             recordsPerPageOptions={PAGE_SIZES}
                             onRecordsPerPageChange={setPageSize}
-                            paginationText={({ from, to, totalRecords }) =>  `${totalRecords}qurilmalardan   ${from}dan ${to}gacha  qurilmalar ko'rsatilyapti`}
+                            paginationText={({ from, to, totalRecords }) => `${totalRecords}qurilmalardan   ${from}dan ${to}gacha  qurilmalar ko'rsatilyapti`}
                         />
                     </div>
                 </div>

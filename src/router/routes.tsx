@@ -5,6 +5,7 @@ const Index = lazy(() => import('../pages/Index'));
 // ? Users
 const PreviewUser = lazy(() => import('../pages/Users/PreviewUser'));
 const Users = lazy(() => import('../pages/Users/Users'));
+const AddUser = lazy(() => import('../pages/Users/AddUser'));
 
 const Profile = lazy(() => import('../pages/Users/Profile'));
 const AccountSetting = lazy(() => import('../pages/Users/AccountSetting'));
@@ -107,6 +108,11 @@ const routes = [
         path: '/users/:id',
         for: 'admin',
         element: <PreviewUser />
+    },
+    {
+        path: '/user/add',
+        for: 'admin',
+        element: <AddUser />
     },
     {
         path: '/users/profile',

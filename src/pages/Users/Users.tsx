@@ -34,7 +34,15 @@ function Users () {
             <div className='panel  mt-5'>
                 <div className='flex items-center mb-5  justify-between '>
                     <h5 className='font-semibold text-lg dark:text-white-light'>Barcha foydalanuvchilar ({users?.total})</h5>
-                
+                    <div className='flex items-center gap-2'>
+                            <Link to='/user/add' className='btn btn-primary gap-2'>
+                                <svg className='w-5 h-5' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='1.5' fill='none' strokeLinecap='round' strokeLinejoin='round'>
+                                    <line x1='12' y1='5' x2='12' y2='19'></line>
+                                    <line x1='5' y1='12' x2='19' y2='12'></line>
+                                </svg>
+                                Yangi qo'shish
+                            </Link>
+                        </div>
                 </div>
                 <div className='flex flex-row items-stretch gap-5 '>
                     <div className='table-responsive mb-5 w-full'>
@@ -72,7 +80,7 @@ function Users () {
                                                 <div className=' block '>{getPrettyTime(user?.created_at || "")}</div>
                                             </td>
                                             <td className=''>
-                                                <div className=' '>{getPrettyTime(user?.created_at || "")}</div>
+                                                <div className=' '>{getPrettyTime(user?.updated_at || "")}</div>
                                             </td>
                                             <td className='flex gap-4 items-center w-max mx-auto'>
                                                 <NavLink to={`/users/${user?._id}`} className='flex hover:text-info'>

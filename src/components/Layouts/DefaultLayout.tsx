@@ -38,7 +38,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
         .then(res => {
             if (res.status === 200) {
                 dispatch(setUser({ user: res?.data?.data }));
-                dispatch(setRole({ user: res?.data?.role }));
+                dispatch(setRole({ role: res?.data?.role }));
                 setShowLoader(false);
             } else {
                 toast.fire({

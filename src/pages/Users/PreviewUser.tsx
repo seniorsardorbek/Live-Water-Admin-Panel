@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { api, deleteItem } from '../../utils/api';
-import { RegionFace, UserFace } from '../../types';
-import { Miniloader } from '../Component/Miniloader';
-import { toast } from '../../utils/toast';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IRootState } from '../../store';
+import { RegionFace, UserFaceOpt } from '../../types';
+import { api, deleteItem } from '../../utils/api';
+import { toast } from '../../utils/toast';
+import { Miniloader } from '../Component/Miniloader';
 
 const PreviewUser = () => {
     const { id } = useParams();
-    const [user, setUser] = useState<UserFace>({});
+    const [user, setUser] = useState<UserFaceOpt>({});
     const [regions, setRegions] = useState<RegionFace[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const token = useSelector((state : IRootState) => state.data.token)
@@ -32,9 +32,8 @@ const PreviewUser = () => {
     };
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const { devices, ...data } = user;
         setLoading(true);
-        api.patch(`users/${id}`, data)
+        api.patch(`users/${id}`, user)
             .then(res => {
                 toast.fire({ icon: 'success', padding: '10px 20px', title: 'Yangilandi!' });
                 setLoading(false);

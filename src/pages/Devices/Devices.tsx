@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { IRootState } from '../store';
-import { setPageTitle } from '../store/themeConfigSlice';
-import { DevicesFace } from '../types';
-import { api } from '../utils/api';
-import getData from '../utils/getData';
+import { IRootState } from '../../store';
+import { setPageTitle } from '../../store/themeConfigSlice';
+import { DevicesFace } from '../../types';
+import { api } from '../../utils/api';
+import getData from '../../utils/getData';
 function Devices () {
     const [devices, setDevices] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState<boolean>(false);
@@ -33,28 +33,7 @@ function Devices () {
             token
         });
     }, [page, pageSize]);
-    function deleteDevice (id: string) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            showCancelButton: true,
-            confirmButtonText: 'Delete',
-            padding: '2em',
-            customClass: 'sweet-alerts'
-        }).then(result => {
-            console.log(result.isConfirmed);
-            if (result.isConfirmed) {
-                api.delete(`devices/${id}`, { headers: { authorization: `Bearer ${token}` } })
-                    .then(res => {
-                        Swal.fire({ title: 'Deleted!', text: res.data.msg, icon: 'success', customClass: 'sweet-alerts' });
-                    })
-                    .catch(error => {
-                        Swal.fire({ title: "O'chirilmadi!", text: error.message, icon: 'error', customClass: 'sweet-alerts' });
-                    });
-            }
-        });
-    }
+ 
     return (
         <div>
             <ul className='flex space-x-2 rtl:space-x-reverse'>
@@ -69,7 +48,7 @@ function Devices () {
             </ul>
             <div className='panel px-0 border-white-light dark:border-[#1b2e4b] mt-5'>
                 <div className='invoice-table'>
-                    <div className='mb-4.5 px-5 flex md:items-center md:flex-row flex-col gap-5'>
+                    <div className='mb-4.5 px-5 flex md:items-center justify-between w-full md:flex-row flex-col gap-5'>
                         <h5 className='font-semibold text-lg dark:text-white-light'>Barcha qurilmalar ({devices?.total})</h5>
                         <div className='flex items-center gap-2'>
                             <Link to='/device/add' className='btn btn-primary gap-2'>
@@ -77,7 +56,7 @@ function Devices () {
                                     <line x1='12' y1='5' x2='12' y2='19'></line>
                                     <line x1='5' y1='12' x2='19' y2='12'></line>
                                 </svg>
-                                Add New
+                                Yangi qo'shish
                             </Link>
                         </div>
                         <div className='ltr:ml-auto rtl:mr-auto'>
@@ -170,26 +149,6 @@ function Devices () {
                                                     ></path>
                                                 </svg>
                                             </NavLink>
-                                            <button onClick={() => deleteDevice(_id)} type='button' className='flex hover:text-danger'>
-                                                <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' className='h-5 w-5'>
-                                                    <path d='M20.5001 6H3.5' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round'></path>
-                                                    <path
-                                                        d='M18.8334 8.5L18.3735 15.3991C18.1965 18.054 18.108 19.3815 17.243 20.1907C16.378 21 15.0476 21 12.3868 21H11.6134C8.9526 21 7.6222 21 6.75719 20.1907C5.89218 19.3815 5.80368 18.054 5.62669 15.3991L5.16675 8.5'
-                                                        stroke='currentColor'
-                                                        strokeWidth='1.5'
-                                                        strokeLinecap='round'
-                                                    ></path>
-                                                    <path opacity='0.5' d='M9.5 11L10 16' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round'></path>
-                                                    <path opacity='0.5' d='M14.5 11L14 16' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round'></path>
-                                                    <path
-                                                        opacity='0.5'
-                                                        d='M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6'
-                                                        stroke='currentColor'
-                                                        strokeWidth='1.5'
-                                                    ></path>
-                                                </svg>
-                                            </button>
-                                            {/* </NavLink> */}
                                         </div>
                                     )
                                 }

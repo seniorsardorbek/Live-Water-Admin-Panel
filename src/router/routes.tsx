@@ -44,10 +44,10 @@ const Clipboard = lazy(() => import('../pages/Forms/Clipboard'));
 const Constructor = lazy(() => import('../pages/Events'));
 const ServerEvent = lazy(() => import('../pages/ServerEvent'));
 const AddModem = lazy(() => import('../pages/Forms/AddModem'));
-const Devices = lazy(() => import('../pages/Devices'));
+const Devices = lazy(() => import('../pages/Devices/Devices'));
 const DevicesMap = lazy(() => import('../pages/DevicesMap'));
-const AddDevice = lazy(() => import('../pages/AddDevice'));
-const PreviewDevice = lazy(() => import('../pages/PreviewDevice'));
+const AddDevice = lazy(() => import('../pages/Devices/AddDevice'));
+const PreviewDevice = lazy(() => import('../pages/Devices/PreviewDevice'));
 const Regions = lazy(() => import('../pages/Regions'));
 
 const routes = [

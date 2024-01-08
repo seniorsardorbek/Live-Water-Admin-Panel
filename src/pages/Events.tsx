@@ -11,6 +11,7 @@ import { compileTimes, getDateFromTimestamp, getHourAndMinutesFromTimestamp } fr
 import { downloadExcel } from 'react-export-table-to-excel';
 import { Miniloader } from './Component/Miniloader';
 import { IRootState } from '../store';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 function Events () {
     const dispatch = useDispatch();
     const [date3, setDate3] = useState<any>([]);

@@ -7,20 +7,43 @@ export interface DevicesFace {
     device_privet_key: string;
     ip_address: string;
     date: number;
-    signal: 'good' | 'nosignal';
     port: number;
     owner: UserFace;
     created_at: string;
     updated_at: string;
 }
+export interface DevicesFaceOpt {
+    _id?: string;
+    region?: string;
+    lat?: number;
+    long?: number;
+    serie?: string;
+    device_privet_key?: string;
+    ip_address?: string;
+    date?: number;
+    port?: number;
+    owner?: string;
+    created_at?: string;
+    updated_at?: string;
+}
 export interface UserFace {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    username: string;
+    role: string;
+    region: string;
+    devices :DevicesFace[]
+    created_at: string;
+    updated_at: string;
+}
+export interface UserFaceOpt {
     _id?: string;
     first_name?: string;
     last_name?: string;
     username?: string;
     role?: string;
     region?: string;
-    devices? :DevicesFace[]
     created_at?: string;
     updated_at?: string;
 }

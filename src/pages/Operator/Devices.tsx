@@ -6,7 +6,7 @@ import { IRootState } from '../../store';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { DevicesFace } from '../../types';
 import getData from '../../utils/getData';
-function Devices () {
+function UserDevices () {
     const [devices, setDevices] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState<boolean>(false);
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ function Devices () {
     }, [pageSize]);
     useEffect(() => {
         getData({
-            url: `/devices?page[offset]=${page - 1}&page[limit]=${pageSize}`,
+            url: `/devices/user?page[offset]=${page - 1}&page[limit]=${pageSize}`,
             setData: setDevices,
             setLoading,
             token
@@ -167,4 +167,4 @@ function Devices () {
     );
 }
 
-export default Devices;
+export default UserDevices;

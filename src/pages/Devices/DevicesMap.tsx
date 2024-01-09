@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../store";
+import { IRootState } from "../../store";
 import {
   FullscreenControl,
   GeolocationControl,
@@ -10,9 +10,9 @@ import {
   ZoomControl,
 } from "@pbe/react-yandex-maps";
 import { Link } from "react-router-dom";
-import { DevicesFace } from '../types/index';
-import { setPageTitle } from "../store/themeConfigSlice";
-import getData from "../utils/getData";
+import { DevicesFace } from '../../types/index';
+import { setPageTitle } from "../../store/themeConfigSlice";
+import getData from "../../utils/getData";
 
 function DevicesMap() {
   const dispatch = useDispatch();

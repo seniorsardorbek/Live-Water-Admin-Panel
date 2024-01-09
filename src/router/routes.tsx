@@ -3,8 +3,6 @@ import { lazy } from 'react';
 // ?Index for Admin
 const Index = lazy(() => import('../pages/Index'));
 
-// ?Index for Operator
-const IndexOperator = lazy(() => import('../pages/IndexOperator'));
 // ? Users
 const PreviewUser = lazy(() => import('../pages/Users/PreviewUser'));
 const Users = lazy(() => import('../pages/Users/Users'));
@@ -48,10 +46,16 @@ const Constructor = lazy(() => import('../pages/Events'));
 const ServerEvent = lazy(() => import('../pages/ServerEvent'));
 const AddModem = lazy(() => import('../pages/Forms/AddModem'));
 const Devices = lazy(() => import('../pages/Devices/Devices'));
-const DevicesMap = lazy(() => import('../pages/DevicesMap'));
+const DevicesMap = lazy(() => import('../pages/Devices/DevicesMap'));
 const AddDevice = lazy(() => import('../pages/Devices/AddDevice'));
 const PreviewDevice = lazy(() => import('../pages/Devices/PreviewDevice'));
 const Regions = lazy(() => import('../pages/Regions'));
+
+
+//!  Operator pages
+const IndexOperator = lazy(() => import('../pages/Operator/Index'));
+const ConstructorOperator = lazy(() => import('../pages/Operator/Constructor'));
+const UserDevices = lazy(() => import('../pages/Operator/Devices'));
 
 const routes = [
     // dashboard
@@ -60,11 +64,7 @@ const routes = [
         for: 'admin',
         element: <Index />
     },
-    {
-        path: '/',
-        for: 'operator',
-        element: <IndexOperator />
-    },
+   
     {
         path: '/',
         for: 'nouser',
@@ -137,12 +137,28 @@ const routes = [
         for: 'admin',
         element: <AccountSetting />
     },
-    // pages
+    // ! Operator section pages
+    {
+        path: '/',
+        for: 'operator',
+        element: <IndexOperator />
+    },
+    {
+        path: '/constructor',
+        for: 'operator',
+        element: <ConstructorOperator />
+    },
+    {
+        path: '/devices',
+        for: 'operator',
+        element: <UserDevices />
+    },
     {
         path: '/pages/knowledge-base',
         for: 'admin',
         element: <KnowledgeBase />
     },
+    // pages
     {
         path: '/pages/contact-us',
         for: 'admin',

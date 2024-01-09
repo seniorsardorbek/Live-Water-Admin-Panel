@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BlueDot, GreenDot, RedDot } from '../../public/assets/svgs';
-import { IRootState } from '../store';
-import { setPageTitle } from '../store/themeConfigSlice';
-import { EventFace } from '../types';
-import { api } from '../utils/api';
-import { getDateFromTimestamp, getHourAndMinutesFromTimestamp } from '../utils/utils';
+import { BlueDot, GreenDot, RedDot } from '../../../public/assets/svgs';
+import { IRootState } from '../../store';
+import { setPageTitle } from '../../store/themeConfigSlice';
+import { EventFace } from '../../types';
+import { api } from '../../utils/api';
+import { getDateFromTimestamp, getHourAndMinutesFromTimestamp } from '../../utils/utils';
 
 const IndexOperator = () => {
     const [baseData, setBaseData] = useState<EventFace[]>([]);
@@ -17,7 +17,7 @@ const IndexOperator = () => {
     useEffect(() => {
         dispatch(setPageTitle('Dashboard'));
         api('basedata/operator?page[limit]=50' , { headers: { authorization: `Bearer ${token}` } }).then(res => {
-            const { data } = res;
+            const { data } = res.data;
             const last_updated = data.filter((el: EventFace) => el?.date_in_ms === data[0].date_in_ms);
             const bad = last_updated.filter((el: EventFace) => el.signal === 'nosignal');
             const good = last_updated.filter((el: EventFace) => el.signal === 'good');

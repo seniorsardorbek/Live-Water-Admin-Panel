@@ -17,7 +17,7 @@ function ServerEvents () {
     const [data, setData] = useState<{ total: number; offset: number; data: ServerdataFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState<number>(0);
-    const [basedata, setBasedata] = useState<EventFace | null>({});
+    const [basedata, setBasedata] = useState<EventFace |  null>();
     const { token, user } = useSelector((state: IRootState) => state.data);
 
     useEffect(() => {
@@ -98,7 +98,7 @@ function ServerEvents () {
                                         </h5>
                                     </div>
                                     <p className='mb-2 text-white-dark'>Qurilma maxfiy kaliti - {el?.device_privet_key}</p>
-                                    <p className='mb-2 text-white-dark flex items-center justify-between'>
+                                    <div className='mb-2 text-white-dark flex items-center justify-between'>
                                         <Tippy
                                             content={
                                                 basedata ? `Level : ${basedata?.level}  Volume : ${basedata?.volume} Salinity : ${basedata?.salinity} Signal : ${basedata?.signal}` : <Miniloader />
@@ -113,7 +113,7 @@ function ServerEvents () {
                                             <p className='mb-2 text-white-dark'>{getHourAndMinutesFromTimestamp(el.send_data_in_ms)}</p>
                                             <p className='mb-2 text-white-dark'>{getDateFromTimestamp(el?.send_data_in_ms)}</p>
                                         </div>
-                                    </p>
+                                    </div>
                                     <p className='font-semibold text-white-dark  '>Message - {el?.message}</p>
                                 </div>
                             </div>

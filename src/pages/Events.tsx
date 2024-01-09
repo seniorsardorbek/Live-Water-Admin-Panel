@@ -5,13 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GreenDot, RedDot } from '../../public/assets/svgs';
 import { setPageTitle } from '../store/themeConfigSlice';
-import { DevicesFace, EventFace, RegionFace } from '../types';
+import { DevicesFace, EventFace, EventFaceHandelExel, RegionFace } from '../types';
 import getData from '../utils/getData';
 import { compileTimes, getDateFromTimestamp, getHourAndMinutesFromTimestamp } from '../utils/utils';
 import { downloadExcel } from 'react-export-table-to-excel';
 import { Miniloader } from './Component/Miniloader';
 import { IRootState } from '../store';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 function Events () {
     const dispatch = useDispatch();
     const [date3, setDate3] = useState<any>([]);
@@ -25,17 +24,19 @@ function Events () {
     const [page, setPage] = useState<number>(0);
     const { token } = useSelector((state: IRootState) => state.data);
 
-    const header = ['_id', 'level', 'volume', 'salinity', 'date_in_ms'];
+    const header = ['_id', 'level', 'volume', 'salinity', 'date_in_ms', 'signal', 'updated_at', 'created_at', 'serie'];
     useEffect(() => {
         dispatch(setPageTitle('Events'));
-        getData({ url: '/regions', setData: setRegions , token });
+        getData({ url: '/regions', setData: setRegions, token });
     }, []);
     useEffect(() => {
-        getData({ url: `/devices/reg?${data?.region ? `filter[region]=${data.region}` : ''}`, setData: setDevices , token });
+        getData({ url: `/devices/reg?${data?.region ? `filter[region]=${data.region}` : ''}`, setData: setDevices, token });
     }, [data?.region]);
     useEffect(() => {
         getData({
-            url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}`,
+            url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}&${
+                data?.region ? `filter[region]=${data.region}` : ''
+            }`,
             setData: setEvents,
             setLoading,
             token
@@ -46,19 +47,28 @@ function Events () {
         e.preventDefault();
         setPage(0);
         getData({
-            url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}`,
+            url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}&${
+                data?.region ? `filter[region]=${data.region}` : ''
+            }`,
             setData: setEvents,
-            setLoading ,
+            setLoading,
             token
         });
     };
     function handleDownloadExcel () {
+        const handleExel: EventFaceHandelExel[] = events.data.map((el: EventFace) => {
+            const { device, ...data } = el;
+            return {
+                ...data,
+                serie: device.serie
+            };
+        });
         downloadExcel({
             fileName: 'table',
             sheet: 'react-export-table-to-excel',
             tablePayload: {
                 header,
-                body: events.data
+                body: handleExel
             }
         });
     }
@@ -90,7 +100,7 @@ function Events () {
                             Sahifadan yuklash
                         </button>
                         <a
-                            href={`http://livewater.uz:4000/basedata/xlsx/?${from ? `&filter[start]=${from}` : ''}${to ? `&filter[end]=${to}` : ''}${device ? `&filter[device]=${device}` : ''}`}
+                            href={`https://back1.livewater.uz/basedata/xlsx/?${from ? `&filter[start]=${from}` : ''}${to ? `&filter[end]=${to}` : ''}${device ? `&filter[device]=${device}` : ''}`}
                             className='btn btn-primary btn-sm m-1'
                         >
                             <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' className='w-5 h-5 ltr:mr-2 rtl:ml-2'>
@@ -123,7 +133,7 @@ function Events () {
                                 <input onChange={e => setData({ region: e.target.value })} type='radio' name='outline_radio' value={''} className='form-radio outline-success' />
                                 <span>Hammasi</span>
                             </label>
-                            {regions.data.map((el , i) => (
+                            {regions.data.map((el, i) => (
                                 <label key={i} className='inline-flex justify-between items-center'>
                                     <input onChange={e => setData({ region: e.target.value })} type='radio' name='outline_radio' value={el._id} className='form-radio outline-success' />
                                     <span>{el.name}</span>

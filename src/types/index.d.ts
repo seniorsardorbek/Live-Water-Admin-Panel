@@ -54,13 +54,23 @@ export interface RegionFace {
 }
 export interface EventFace {
     [key: string]: string | number | boolean;
-    _id?: string;
-    level?: number;
-    salinity?: number;
-    volume?: number;
-    signal?: 'good' | 'nosignal';
-    date_in_ms?: number;
-    device?: DevicesFace;
+    _id: string;
+    level: number;
+    salinity: number;
+    volume: number;
+    signal: 'good' | 'nosignal';
+    date_in_ms: number;
+    device: DevicesFace;
+}
+export interface EventFaceHandelExel {
+    [key: string]: string | number | boolean;
+    _id: string;
+    level: number;
+    salinity: number;
+    volume: number;
+    signal: 'good' | 'nosignal';
+    date_in_ms: number;
+    serie : string ;
 }
 export interface ServerdataFace {
     [key: string]: string | number | boolean;

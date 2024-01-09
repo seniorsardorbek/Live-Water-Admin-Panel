@@ -6,6 +6,7 @@ import { IRootState } from '../../store';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { DevicesFace } from '../../types';
 import getData from '../../utils/getData';
+import { _CardSection } from '@mantine/core/lib/Card/CardSection/CardSection';
 function Devices () {
     const [devices, setDevices] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
     const [loading, setLoading] = useState<boolean>(false);
@@ -71,7 +72,7 @@ function Devices () {
                                     accessor: 'Id',
                                     sortable: false,
                                     render: ({ _id }) => (
-                                        <span>
+                                        <span key={_id}>
                                             <div className='text-primary underline hover:no-underline font-semibold'>{`${_id}`}</div>
                                         </span>
                                     )

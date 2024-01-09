@@ -7,7 +7,6 @@ import { IRootState } from '../store';
 
 const DefaultRouterProvider = () => {
     const role = useSelector((state: IRootState) => state.data.role);
-    console.log(role);
     const finalRoutes = routes.map(route => {
         return {
             ...route,
@@ -20,3 +19,4 @@ const DefaultRouterProvider = () => {
 };
 
 export default DefaultRouterProvider;
+    

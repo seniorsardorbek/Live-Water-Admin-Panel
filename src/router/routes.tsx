@@ -65,6 +65,11 @@ const routes = [
         for: 'operator',
         element: <IndexOperator />
     },
+    {
+        path: '/',
+        for: 'nouser',
+        element: <ComingSoon />,
+    },
 
     {
         path: '/constructor',

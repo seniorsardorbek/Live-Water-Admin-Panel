@@ -6,7 +6,7 @@ const rawCookieData = Cookies.get('data');
 const initialState = {
     token: Cookies.get('passport') || false,
     user: rawCookieData ? JSON.parse(rawCookieData) : false,
-    role :  "admin"
+    role :  "nouser"
 };
 
 const dataConfigSlice = createSlice({

@@ -16,7 +16,7 @@ const Index = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setPageTitle('Dashboard'));
-        api('basedata?page[limit]=50').then(res => {
+        api('basedata?page[limit]=50' ,  { headers: { authorization: `Bearer ${token}` } }).then(res => {
             const { data } = res.data;
             const last_updated = data.filter((el: EventFace) => el?.date_in_ms === data[0].date_in_ms);
             const bad = last_updated.filter((el: EventFace) => el.signal === 'nosignal');

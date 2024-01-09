@@ -1,16 +1,15 @@
+import Tippy from '@tippyjs/react';
 import 'flatpickr/dist/flatpickr.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import 'tippy.js/dist/tippy.css';
 import { IRootState } from '../store';
 import { setPageTitle } from '../store/themeConfigSlice';
-import 'tippy.js/dist/tippy.css';
-import { Link } from 'react-router-dom';
-import { getDateFromTimestamp, getHourAndMinutesFromTimestamp, getPrettyTime, timestampToHumanDate } from '../utils/utils';
-import getData from '../utils/getData';
 import { EventFace, ServerdataFace } from '../types';
-import Tippy from '@tippyjs/react';
-import { DevicesFace } from '../types/index';
 import { api } from '../utils/api';
+import getData from '../utils/getData';
+import { getDateFromTimestamp, getHourAndMinutesFromTimestamp } from '../utils/utils';
 import { Miniloader } from './Component/Miniloader';
 function ServerEvents () {
     const dispatch = useDispatch();

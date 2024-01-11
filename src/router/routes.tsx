@@ -15,7 +15,6 @@ const Error = lazy(() => import('../components/Error'));
 
 const Constructor = lazy(() => import('../pages/Events'));
 const ServerEvent = lazy(() => import('../pages/ServerEvent'));
-const AddModem = lazy(() => import('../pages/Devices/AddModem'));
 const Devices = lazy(() => import('../pages/Devices/Devices'));
 const DevicesMap = lazy(() => import('../pages/Devices/DevicesMap'));
 const AddDevice = lazy(() => import('../pages/Devices/AddDevice'));
@@ -75,11 +74,7 @@ const routes = [
         for: 'admin',
         element: <PreviewDevice />
     },
-    {
-        path: '/events/add-event',
-        for: 'admin',
-        element: <AddModem />
-    },
+
     // !Users pages
     {
         path: '/users',

@@ -15,7 +15,7 @@ const IndexOperator = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setPageTitle('Dashboard'));
+        dispatch(setPageTitle('Asosiy sahifa'));
         api('basedata/operator?page[limit]=50', { headers: { authorization: `Bearer ${token}` } }).then(res => {
             const { data } = res.data;
             const last_updated = data.filter((el: EventFace) => el?.date_in_ms === data[0].date_in_ms);

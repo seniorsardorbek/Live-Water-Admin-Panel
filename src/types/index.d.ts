@@ -55,6 +55,7 @@ export interface RegionFace {
 export interface EventFace {
     [key: string]: string | number | boolean;
     _id: string;
+    pressure :number;
     level: number;
     salinity: number;
     volume: number;
@@ -65,6 +66,7 @@ export interface EventFace {
 export interface EventFaceHandelExel {
     [key: string]: string | number | boolean;
     _id: string;
+    pressure :number;
     level: number;
     salinity: number;
     volume: number;

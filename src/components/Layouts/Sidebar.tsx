@@ -68,7 +68,7 @@ const Sidebar = () => {
                                                     fill='currentColor'
                                                 />
                                             </svg>
-                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('dashboard')}</span>
+                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Asosiy sahifa')}</span>
                                         </div>
                                     </NavLink>
                                 </li>
@@ -110,7 +110,7 @@ const Sidebar = () => {
                                                 />
                                             </svg>
 
-                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('events')}</span>
+                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Serverga yo\'naltirilgan m..')}</span>
                                         </div>
                                     </NavLink>
                                 </li>
@@ -144,7 +144,7 @@ const Sidebar = () => {
                                                 ></path>
                                                 <circle cx='12' cy='10' r='3' stroke='currentColor' strokeWidth='1.5'></circle>
                                             </svg>
-                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Devices on map')}</span>
+                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Qurilmalar xaritada')}</span>
                                         </div>
                                     </NavLink>
                                 </li>
@@ -159,7 +159,7 @@ const Sidebar = () => {
                                                     strokeWidth='1.5'
                                                 ></path>
                                             </svg>
-                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Regions')}</span>
+                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Hududlar')}</span>
                                         </div>
                                     </NavLink>
                                 </li>
@@ -207,7 +207,7 @@ const Sidebar = () => {
                                                 <path d='M22.5 21.5V18.5L19.5 16.5' stroke='#565E6C' strokeWidth='2.4' strokeMiterlimit='10' strokeLinecap='square' />
                                             </svg>
 
-                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('devices')}</span>
+                                            <span className='ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark'>{t('Qurilmalar')}</span>
                                         </div>
                                     </NavLink>
                                 </li>

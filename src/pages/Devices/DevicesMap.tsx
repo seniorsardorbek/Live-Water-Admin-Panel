@@ -21,7 +21,7 @@ function DevicesMap() {
   const [data, setData] = useState<{ total: number; offset: number; data: DevicesFace[]; limit: number }>({ data: [], limit: 0, offset: 0, total: 0 });
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-      dispatch(setPageTitle('Devices on map'));
+      dispatch(setPageTitle('Qurilmalar xaritada'));
       getData ({ url: 'devices?page[limit]=1000', setData, setLoading , token });
   }, []);
   return (
@@ -29,11 +29,11 @@ function DevicesMap() {
       <ul className="flex space-x-2 rtl:space-x-reverse">
         <li>
           <Link to="/" className="text-primary hover:underline">
-            Dashboard
+            Asosiy sahifa
           </Link>
         </li>
         <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-          <span>Devices on map</span>
+          <span>Qurilmalarni xaritada ko'rish</span>
         </li>
       </ul>
       <div className="mt-5">

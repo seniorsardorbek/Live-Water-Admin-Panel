@@ -25,7 +25,7 @@ function ConstructorOperator () {
 
     const header = ['_id', 'level', 'volume', 'salinity', 'date_in_ms'];
     useEffect(() => {
-        dispatch(setPageTitle('Events'));
+        dispatch(setPageTitle('Constructor'));
         getData({url : `devices/user` ,token , setData : setDevices })
     }, []);
     useEffect(() => {
@@ -62,11 +62,11 @@ function ConstructorOperator () {
             <ul className='flex space-x-2 rtl:space-x-reverse'>
                 <li>
                     <Link to='/' className='text-primary hover:underline'>
-                        Dashboard
+                        Asosiy sahifa
                     </Link>
                 </li>
                 <li onClick={handleDownloadExcel} className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                    <span>ConstructorOperator</span>
+                    <span>Constructor </span>
                 </li>
             </ul>
             <div className='panel  mt-5'>

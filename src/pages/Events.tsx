@@ -26,7 +26,7 @@ function Events () {
 
     const header = ['_id', 'level', 'volume', 'salinity', 'date_in_ms', 'signal', 'updated_at', 'created_at', 'serie'];
     useEffect(() => {
-        dispatch(setPageTitle('Events'));
+        dispatch(setPageTitle('Constructor'));
         getData({ url: '/regions', setData: setRegions, token });
     }, []);
     useEffect(() => {
@@ -35,7 +35,7 @@ function Events () {
     useEffect(() => {
         getData({
             url: `/basedata?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${device ? `filter[device]=${device}` : ''}&${
-                data?.region ? `filter[region]=${data.region}` : ''
+                data?.region ? `filter[region]=${data?.region}` : ''
             }`,
             setData: setEvents,
             setLoading,
@@ -72,12 +72,13 @@ function Events () {
             }
         });
     }
+    console.log(events);
     return (
         <>
             <ul className='flex space-x-2 rtl:space-x-reverse'>
                 <li>
                     <Link to='/' className='text-primary hover:underline'>
-                        Dashboard
+                        Asosiy sahifa
                     </Link>
                 </li>
                 <li onClick={handleDownloadExcel} className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -86,7 +87,7 @@ function Events () {
             </ul>
             <div className='panel  mt-5'>
                 <div className='flex items-center mb-5  justify-between '>
-                    <h5 className='font-semibold text-lg dark:text-white-light'>Barcha eventlar ({events?.total})</h5>
+                    <h5 className='font-semibold text-lg dark:text-white-light'>Barchasi ({events?.total})</h5>
                     <div className='flex '>
                         <button type='button' className='btn btn-primary btn-sm m-1' onClick={handleDownloadExcel}>
                             <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' className='w-5 h-5 ltr:mr-2 rtl:ml-2'>
@@ -97,10 +98,12 @@ function Events () {
                                 <path opacity='0.5' d='M13 2.5V5C13 7.35702 13 8.53553 13.7322 9.26777C14.4645 10 15.643 10 18 10H22' stroke='currentColor' strokeWidth='1.5' />
                                 <path opacity='0.5' d='M7 14L6 15L7 16M11.5 16L12.5 17L11.5 18M10 14L8.5 18' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
                             </svg>
-                            Sahifadan yuklash
+                            Sahifadan xlsx falyga yuklash
                         </button>
                         <a
-                            href={`https://back1.livewater.uz/basedata/xlsx/?${from ? `&filter[start]=${from}` : ''}${to ? `&filter[end]=${to}` : ''}${device ? `&filter[device]=${device}` : ''}`}
+                            href={`http://back1.livewater.uz/basedata/xlsx?page[offset]=${page}&${from ? `filter[start]=${from}` : ''}&${to ? `filter[end]=${to}` : ''}&${
+                                device ? `filter[device]=${device}` : ''
+                            }&${data?.region ? `filter[region]=${data.region}` : ''}`}
                             className='btn btn-primary btn-sm m-1'
                         >
                             <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' className='w-5 h-5 ltr:mr-2 rtl:ml-2'>
@@ -111,7 +114,7 @@ function Events () {
                                 <path opacity='0.5' d='M13 2.5V5C13 7.35702 13 8.53553 13.7322 9.26777C14.4645 10 15.643 10 18 10H22' stroke='currentColor' strokeWidth='1.5' />
                                 <path opacity='0.5' d='M7 14L6 15L7 16M11.5 16L12.5 17L11.5 18M10 14L8.5 18' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
                             </svg>
-                            Constructordan yuklash
+                            Hammasini yuklash yuklash
                         </a>
                     </div>
                 </div>
@@ -166,6 +169,7 @@ function Events () {
                                     <th className='text-center text-xs'>Serie</th>
                                     <th className='text-center text-xs'>Suv satxi(sm)</th>
                                     <th className='text-center text-xs'>Tuzlik darajasi(EC25)</th>
+                                    <th className='text-center text-xs'>Hajm</th>
                                     <th className='text-center text-xs'>Bosim (kPa)</th>
                                     <th className='text-center text-xs'>Vaqt</th>
                                     <th className='text-center text-xs'>Sana</th>
@@ -176,28 +180,30 @@ function Events () {
                                 {events.data.map((data, i) => {
                                     return (
                                         <tr key={data._id}>
-                                            <td className=''>{i + 1}</td>
-                                            <td className=''>
+                                            <td>{i + 1}</td>
+                                            <td>
                                                 <div className='whitespace-nowrap text-xs'>{data?.device?.serie}</div>
                                             </td>
-                                            <td className=''>
+                                            <td>
                                                 <div className='whitespace-nowrap text-center'>{data?.level}</div>
                                             </td>
-                                            <td className=''>
+                                            <td>
                                                 <div className='whitespace-nowrap text-center '>{data?.salinity}</div>
                                             </td>
-                                            <td className=''>
+                                            <td>
                                                 <div className='whitespace-nowrap text-center '>{data?.volume}</div>
                                             </td>
-                                            <td className=''>
+                                            <td>
+                                                <div className='whitespace-nowrap text-center '>{data?.pressure}</div>
+                                            </td>
+                                            <td>
                                                 <div className=' block '>{getHourAndMinutesFromTimestamp(data?.date_in_ms || 0)}</div>
                                             </td>
-                                            <td className=''>
-                                                <div className=' '>{getDateFromTimestamp(data?.date_in_ms || 0)}</div>
+                                            <td>
+                                                <div >{getDateFromTimestamp(data?.date_in_ms || 0)}</div>
                                             </td>
-                                            <td className=''>
+                                            <td>
                                                 <div className='whitespace-nowrap   flex items-center gap-2'>
-                                                    {' '}
                                                     {data?.signal === 'good' ? <GreenDot /> : <RedDot />} {data?.signal === 'good' ? 'Yaxshi' : "Signal yo'q"}{' '}
                                                 </div>
                                             </td>
@@ -219,17 +225,6 @@ function Events () {
                                     </svg>
                                 </button>
                             </li>
-                            {page > 0 && (
-                                <li>
-                                    <button
-                                        onClick={() => !loading && setPage(page)}
-                                        type='button'
-                                        className={`flex justify-center items-center w-10 h-10 font-semibold p-2 rounded-full transition bg-white-light text-dark hover:text-white hover:bg-primary dark:text-white-light dark:bg-[#191e3a] dark:hover:bg-primary`}
-                                    >
-                                        {page}
-                                    </button>
-                                </li>
-                            )}
                             <li>
                                 <button
                                     type='button'
@@ -238,18 +233,6 @@ function Events () {
                                     {page + 1}
                                 </button>
                             </li>
-                            {page + 2 <= events.total / events.limit && (
-                                <li>
-                                    <button
-                                        disabled={events?.total / events?.limit <= page + 2}
-                                        onClick={() => !loading && setPage(page + 2)}
-                                        type='button'
-                                        className={`flex justify-center items-center w-10 h-10 font-semibold p-2 rounded-full transition bg-white-light text-dark hover:text-white hover:bg-primary dark:text-white-light dark:bg-[#191e3a] dark:hover:bg-primary`}
-                                    >
-                                        {page + 2}
-                                    </button>
-                                </li>
-                            )}
 
                             <li>
                                 <button

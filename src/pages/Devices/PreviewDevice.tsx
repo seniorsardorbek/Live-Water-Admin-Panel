@@ -89,16 +89,16 @@ const PreviewDevice = () => {
             <ul className='flex space-x-2 rtl:space-x-reverse'>
                 <li>
                     <Link to='/' className='text-primary hover:underline'>
-                        Dashboard
+                        Asosiy sahifa
                     </Link>
                 </li>
                 <li>
                     <Link to='/devices' className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-primary hover:underline">
-                        Devices
+                        Qurilmalar
                     </Link>
                 </li>
                 <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                    <span>Add Device</span>
+                    <span>Yangi qo'shish</span>
                 </li>
             </ul>
             <div className='flex justify-between  flex-wrap w-full  mt-5'>
@@ -149,7 +149,7 @@ const PreviewDevice = () => {
                         </div>
                         <div className='flex items-center mt-4 '>
                             <label htmlFor='ip_address' className='flex-1 ltr:mr-2 rtl:ml-2 mb-0'>
-                                Ip Adress
+                                Ip Manzili
                             </label>
                             <MaskedInput
                                 required

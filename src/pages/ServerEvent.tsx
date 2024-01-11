@@ -21,7 +21,7 @@ function ServerEvents () {
     const { token, user } = useSelector((state: IRootState) => state.data);
 
     useEffect(() => {
-        dispatch(setPageTitle('Server Events'));
+        dispatch(setPageTitle('Serverga yo\'naltirilgan malu\'motlar'));
         if(!loading){
             getData({ url: `serverdata/?page[offset]=${page}`, setData, setLoading  , token});
 
@@ -38,16 +38,16 @@ function ServerEvents () {
             <ul className='flex space-x-2 rtl:space-x-reverse'>
                 <li>
                     <Link to='/' className='text-primary hover:underline'>
-                        Dashboard
+                        Asosiy sahifalar
                     </Link>
                 </li>
                 <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                    <span>Server eventlar</span>
+                    <span>Serverga yo'naltirlgan ma'lumotlar</span>
                 </li>
             </ul>
             <div className='panel mt-5'>
                 <div className='flex  justify-between mb-5'>
-                    <h5 className='font-semibold text-lg dark:text-white-light'>Barcha ({data.total})</h5>
+                    <h5 className='font-semibold text-lg dark:text-white-light'>Barchasi ({data?.total || 0})</h5>
                     <ul className='inline-flex items-center space-x-1 rtl:space-x-reverse m-auto mb-2'>
                         <li>
                             <button
@@ -88,7 +88,7 @@ function ServerEvents () {
                 </div>
                 <div className=' flex  flex-wrap justify-center gap-5 '>
                     {data?.data.map((el , i) => (
-                        <div key={i} className=' row-span-2  w-[49%] bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none'>
+                        <div key={i} className=' row-span-2  md:w-[49%] w-full  bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none'>
                             <div className='p-3 flex items-center flex-col sm:flex-row'>
                                 <div className='flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left'>
                                     <div className='flex'>

@@ -6,7 +6,7 @@ import { setPageTitle } from '../store/themeConfigSlice';
 const About = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setPageTitle('About'));
+        dispatch(setPageTitle('Biz haqimizda'));
     });
     return (
         <div>
